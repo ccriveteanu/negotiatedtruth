@@ -6,9 +6,9 @@ export default defineConfig({
   output: 'static',
 
   // For GitHub Pages, use "/" for user/org pages or "/<repo>/" for project pages
-  base: '/',
+  base: '/negotiatedtruth/',
 
-  site: 'https://negotiatedtruth.github.io',
+  site: 'https://ccriveteanu.github.io/negotiatedtruth',
 
   trailingSlash: 'never',
 

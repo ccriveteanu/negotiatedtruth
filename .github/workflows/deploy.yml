@@ -37,7 +37,7 @@ jobs:
       # Build the Astro project for production
       - name: Build with Astro
         run: |
-          npm run build
+          npm run build -- --base /negotiatedtruth/
           
       # Upload the built artifacts to GitHub Pages
       - name: Upload artifact
