@@ -1,0 +1,67 @@
+---
+import { siteConfig } from '../data/site';
+---
+
+<section class="hero" aria-label="Hero">
+  <div class="container hero-inner">
+    <h1 class="hero-title">{siteConfig.hero.title}</h1>
+    <p class="hero-subtitle">{siteConfig.hero.subtitle}</p>
+    <a href={siteConfig.hero.ctaLink} class="btn btn-primary">
+      {siteConfig.hero.ctaText}
+    </a>
+  </div>
+</section>
+
+<style>
+.hero {
+  padding-top: calc(var(--space-xl) + 60px);
+  padding-bottom: var(--space-xl);
+  text-align: center;
+  background: linear-gradient(180deg, var(--color-background) 0%, #fff 100%);
+}
+
+.hero-inner {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-title {
+  font-size: var(--text-3xl);
+  font-weight: bold;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+}
+
+.hero-subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+.btn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-text-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(65, 73, 85, 0.2);
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: var(--text-2xl); }
+  .hero-subtitle { font-size: var(--text-md); }
+}
+</style>

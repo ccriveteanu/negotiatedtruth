@@ -1,0 +1,70 @@
+---
+import { siteConfig } from '../data/site';
+---
+
+<section id="contact" class="contact" aria-labelledby="contact-heading">
+  <div class="container contact-inner">
+    <h2 id="contact-heading" class="visually-hidden">Get in Touch</h2>
+    
+    <div class="contact-content">
+      <p class="contact-cta">{siteConfig.contact.cta}</p>
+      
+      <ul class="contact-methods">
+        <li class="contact-method">
+          <a href={`mailto:${siteConfig.contact.email}`} class="method-link">
+            <span class="method-icon" aria-hidden="true">✉️</span>
+            {siteConfig.contact.email}
+          </a>
+        </li>
+        <li class="contact-method">
+          <a href={`tel:${siteConfig.contact.phone}`} class="method-link">
+            <span class="method-icon" aria-hidden="true">📞</span>
+            {siteConfig.contact.phone}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+.contact {
+  background-color: var(--color-accent);
+  color: white;
+  text-align: center;
+}
+
+.contact-cta {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-lg);
+}
+
+.contact-method {
+  margin: 0;
+}
+
+.method-link {
+  color: white;
+  font-size: var(--text-md);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.method-link:hover,
+.method-link:focus {
+  opacity: 0.85;
+}
+
+.method-icon {
+  display: block;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-xs);
+}
+</style>

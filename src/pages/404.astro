@@ -1,0 +1,50 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const title = "Page Not Found - Negotiated Truth";
+---
+
+<MainLayout title={title} description="The page you are looking for does not exist.">
+  <section class="error-page" aria-labelledby="error-heading">
+    <div class="container error-inner">
+      <h1 id="error-heading" class="error-title">404</h1>
+      <p class="error-message">Page Not Found</p>
+      <p class="error-description">
+        The page you are looking for doesn't exist or has been moved.
+      </p>
+      <a href="/" class="btn btn-primary">
+        Go Home
+      </a>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+.error-page {
+  padding-top: calc(var(--space-xl) + 60px);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-inner {
+  text-align: center;
+}
+
+.error-title {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-sm);
+}
+
+.error-message {
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.error-description {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+</style>
