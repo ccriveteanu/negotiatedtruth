@@ -5,10 +5,11 @@ import { siteConfig } from '../data/site';
 <section id="work" class="featured-work py-24" aria-labelledby="work-heading">
   <div class="container">
     <h2 id="work-heading" class="section-title text-center">Featured Work</h2>
-    
+
     <div class="grid gap-8 md:grid-cols-3 mt-16">
       {siteConfig.work.map((item, index) => (
-        <article 
+        <article
+          key={index}
           class="work-card card-glow-light rounded-3xl overflow-hidden bg-[#0a0518]"
           aria-label={`Project: ${item.title}`}
         >
@@ -26,38 +27,38 @@ import { siteConfig } from '../data/site';
 </section>
 
 <style>
-.featured-work {
-  background: radial-gradient(circle at center, #120a22 0%, #0a0518 100%);
-}
+  .featured-work {
+    background: radial-gradient(circle at center, #120a22 0%, #0a0518 100%);
+  }
 
-.section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 3rem;
-  text-align: center;
-  color: white;
-}
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 3rem;
+    text-align: center;
+    color: white;
+  }
 
-.work-card {
-  transition: transform 300ms ease, box-shadow 300ms ease;
-}
+  .work-card {
+    transition: transform 300ms ease, box-shadow 300ms ease;
+  }
 
-.work-card:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    0 0 40px var(--primary), 
-    inset 0 0 20px rgba(80, 22, 138, 0.1);
-}
+  .work-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 0 40px var(--secondary),
+      inset 0 0 20px rgba(80, 22, 138, 0.1);
+  }
 
-.work-badge {
-  color: #7c2d9b;
-  border-color: rgba(124, 45, 155, 0.3);
-  background-color: rgba(124, 45, 155, 0.1);
-}
+  .work-badge {
+    color: #7c2d9b;
+    border-color: rgba(124, 45, 155, 0.3);
+    background-color: rgba(124, 45, 155, 0.1);
+  }
 
-.work-title {
-  color: white;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
+  .work-title {
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
 </style>

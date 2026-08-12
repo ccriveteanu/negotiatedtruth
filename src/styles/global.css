@@ -1,104 +1,237 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './tailwind.config.css';
 
-:root {
-  --background: #0a0518;
-  --text: #e5e5e5;
-  --primary: #50168a;
-}
-
-@media (prefers-reduced-motion: reduce) {
+@layer base {
   html {
-    scroll-behavior: auto !important;
+    scroll-behavior: smooth;
   }
-  
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    background-color: var(--background-dark);
+    color: var(--color-text);
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  main {
+    @apply bg-background-dark text-text-dark w-full text-left;
+  }
+
+  ::selection {
+    @apply bg-secondary text-white;
+  }
+  ::-moz-selection {
+    @apply bg-secondary text-white;
+  }
+
+  /* Link styles */
+  a,
+  a:active,
+  a:focus {
+    @apply touch-manipulation font-sans font-semibold underline;
+  }
+
+  a:focus {
+    @apply text-primary no-underline;
+  }
+
+  a:focus-visible {
+    @apply outline-primary rounded-sm outline-2 outline-offset-8;
+  }
+
+  a:hover {
+    @apply text-secondary no-underline;
+  }
+
+  li + li,
+  li + ul li,
+  ul + li {
+    @apply mt-2.5;
+  }
+
+  code {
+    @apply break-all;
+  }
+
+  .expressive-code pre > code {
+    @apply break-normal;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline font-semibold text-balance;
+  }
+
+  footer h3 {
+    @apply mt-0 mb-1 text-lg font-semibold;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@layer components {
+  .btn-subtle {
+    @apply hover:border-secondary hover:bg-secondary ring-secondary flex cursor-pointer items-center gap-2 border border-stone-300 bg-stone-200 fill-current p-1.5 font-semibold whitespace-nowrap text-stone-950 no-underline shadow ring-offset-white select-none visited:text-start focus-within:ring-2 focus-within:ring-offset-2 hover:text-white hover:shadow-lg focus:outline-0 dark:border-stone-100 dark:bg-stone-300 dark:ring-offset-black;
+  }
+
+  .btn-primary {
+    @apply bg-secondary hover:bg-secondary-light text-secondary-contrast ring-secondary-light hover:text-secondary-light-contrast flex cursor-pointer items-center gap-2 rounded px-4 py-2 font-semibold whitespace-nowrap no-underline shadow ring-offset-white select-none visited:text-start focus-within:ring-2 focus-within:ring-offset-2 hover:shadow-lg focus:outline-0 dark:ring-offset-black;
+  }
+
+  .btn-primary-small {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .input-primary {
+    @apply ring-secondary w-full max-w-xl min-w-50 rounded border border-stone-400 bg-white px-3 py-2 text-stone-900 placeholder-stone-400 focus-within:ring-2 hover:shadow focus:shadow-lg focus:outline-0 dark:bg-stone-200 dark:placeholder-stone-500;
+  }
+
+  .input-primary-small {
+    @apply px-2 py-1.5 text-sm;
+  }
+
+  .select-primary {
+    @apply ring-secondary w-full max-w-xl min-w-50 cursor-pointer appearance-none rounded rounded-tr-xl border border-stone-400 bg-white bg-no-repeat px-3 py-2 pr-9 text-stone-900 placeholder-stone-400 select-none focus-within:ring-2 hover:shadow focus:shadow-lg focus:outline-0 dark:bg-stone-200 dark:placeholder-stone-500;
+    background-position: right 10px center;
+    background-size: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%2378716c' d='M6 8.825a.5.5 0 01-.354-.146l-4-4a.5.5 0 11.708-.708L6 7.618l3.646-3.647a.5.5 0 01.708.708l-4 4A.5.5 0 016 8.825z'/%3E%3C/svg%3E");
+  }
+
+  /* Card glow effect - Stardrive signature style */
+  .card-glow-light {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.07),
+      0 0 60px var(--secondary),
+      inset 0 0 40px rgba(80, 22, 138, 0.06);
+  }
+
+  /* Header base style */
+  .header-base-style {
+    @apply text-text dark:text-text-dark w-full bg-white/70 shadow backdrop-blur-xl dark:bg-stone-900/40;
+  }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--text);
+@layer utilities {
+  a.unstyle-link,
+  a.unstyle-link:active,
+  a.unstyle-link:focus {
+    @apply font-normal no-underline;
+  }
+
+  a.unstyle-link:focus {
+    @apply text-primary-light no-underline outline-none;
+  }
+
+  a.unstyle-link:hover {
+    @apply underline underline-offset-3;
+  }
+
+  /* External link icon */
+  a.external-link:not(:has(> img:first-child))::after {
+    @apply mx-1 mb-1 inline-block h-4 w-4 align-middle;
+    content: '';
+    background-color: currentColor;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+
+  /* Skip link for accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--secondary);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s ease;
+  }
+  .skip-link:focus {
+    top: 0;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Galaxy animation styles for Hero */
+.galaxy-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 3000px;
+  width: 3000px;
+  transform-origin: center;
+  animation: galaxyRotate 150s linear infinite;
+}
+
+@keyframes galaxyRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Nebula blobs */
+.nebula {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 38% at 28% 38%, rgba(80, 22, 138, 0.65) 0%, transparent 65%),
+              radial-gradient(ellipse 38% 28% at 72% 62%, rgba(242, 100, 48, 0.28) 0%, transparent 65%),
+              radial-gradient(ellipse 48% 52% at 62% 22%, rgba(80, 22, 138, 0.4) 0%, transparent 60%),
+              radial-gradient(ellipse 65% 42% at 42% 82%, rgba(20, 0, 50, 0.85) 0%, transparent 70%);
+  animation: nebulaPulse 24s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaPulse {
+  0% { opacity: 0.72; }
+  100% { opacity: 1; }
+}
+
+/* Star twinkle animation */
+.s1::before, .s2::before, .s3::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Hero title styles */
+.hero-title {
   margin: 0;
-  min-height: 100vh;
-  font-family: 'Geist', system-ui, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* Selection colors */
-::selection {
-  background-color: var(--primary);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.025em;
   color: white;
+  text-shadow: 0 0 80px rgba(242, 100, 48, 0.25);
 }
 
-::-moz-selection {
-  background-color: var(--primary);
-  color: white;
+.hero-subline {
+  margin: 0;
+  max-width: 38rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.55);
 }
 
-/* Typography styles */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.1;
-  margin-top: 0;
-}
-
-a {
-  transition: color 150ms ease, text-decoration-color 150ms ease;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-a:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 4px;
-}
-
-/* Button styles */
-.btn-primary {
-  background-color: var(--primary);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 200ms ease;
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: #7c2d9b;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(80, 22, 138, 0.4);
-}
-
-/* Card glow effect (Stardrive style) */
-.card-glow-light {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.07),
-    0 0 60px var(--primary), 
-    inset 0 0 40px rgba(80, 22, 138, 0.06);
-}
-
-/* Container */
-.container {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-bg,
+  .nebula,
+  .s1::before,
+  .s2::before,
+  .s3::before {
+    animation: none;
+  }
 }

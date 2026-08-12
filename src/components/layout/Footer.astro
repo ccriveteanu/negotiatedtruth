@@ -1,0 +1,149 @@
+---
+import { siteConfig } from '../../data/site';
+import LightModeSwitch from './LightModeSwitch.astro';
+
+interface Props {
+  isHome?: boolean;
+}
+
+const { isHome } = Astro.props as Props;
+
+function getSocialIcon(platform: string) {
+  const icons: Record<string, string> = {
+    'LinkedIn': 'in',
+    'Email': '✉️',
+    'GitHub': '🐱',
+    'Twitter': '𝕏',
+  };
+  return icons[platform] || '🔗';
+}
+---
+
+<footer role="contentinfo" class="from-secondary-dark bg-linear-to-t to-stone-900 pt-14">
+  <div class="container flex flex-col items-start justify-between gap-x-20 gap-y-10 px-7 md:flex-row">
+    {/* Brand section */}
+    <div class="flex w-full flex-col items-center gap-5 border-b border-white/10 pb-10 text-center md:max-w-[350px] md:items-start md:border-0 md:text-left">
+      <a href="/" class="block w-full select-none">
+        <h1 class="text-2xl font-bold tracking-tight">{siteConfig.title}</h1>
+      </a>
+      <div class="flex flex-col gap-1 text-balance text-stone-50">
+        <div class="text-sm font-semibold">Finding common ground through conversation</div>
+        <div class="text-xs">Strategic negotiation and conflict resolution expertise</div>
+      </div>
+
+      {/* Social links */}
+      <div class="flex items-center justify-center gap-4 lg:justify-start">
+        {siteConfig.footer.socialLinks.map(link => (
+          <a
+            key={link.label}
+            href={link.href}
+            class="btn-subtle rounded-full p-1.5"
+            title={`Visit ${link.label}`}
+            target="_blank"
+            rel="noopener"
+          >
+            <span aria-hidden="true" class="text-lg">{getSocialIcon(link.label)}</span>
+          </a>
+        ))}
+      </div>
+
+      {/* Dark mode toggle */}
+      {siteConfig.darkMode && (
+        <div class="mt-6">
+          <LightModeSwitch label="Toggle dark mode" />
+        </div>
+      )}
+    </div>
+
+    {/* Navigation section */}
+    <div class="w-full flex flex-col max-md:w-auto">
+      <div class="grid grid-cols-2 sm:gap-8 sm:grid-cols-3">
+        {/* Main navigation */}
+        <nav aria-labelledby="footer-nav-heading" class="footer-nav">
+          <h3 id="footer-nav-heading" class="text-text-dark mb-3 text-sm font-semibold">Navigation</h3>
+          <ul class="space-y-2">
+            {[
+              { label: 'About', href: '#about' },
+              { label: 'Services', href: '#services' },
+              { label: 'Work', href: '#work' },
+              { label: 'Contact', href: '#contact' },
+            ].map(link => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  class="text-stone-400 hover:text-secondary transition-colors no-underline"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Contact info */}
+        <div aria-labelledby="footer-contact-heading" class="footer-contact">
+          <h3 id="footer-contact-heading" class="text-text-dark mb-3 text-sm font-semibold">Contact</h3>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                class="text-stone-400 hover:text-secondary transition-colors no-underline"
+              >
+                {siteConfig.contact.email}
+              </a>
+            </li>
+            <li>
+              <span class="text-stone-400">{siteConfig.contact.phone}</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Social media */}
+        <div aria-labelledby="footer-social-heading" class="footer-social">
+          <h3 id="footer-social-heading" class="text-text-dark mb-3 text-sm font-semibold">Social</h3>
+          <ul class="space-y-2">
+            {siteConfig.footer.socialLinks.map(link => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener"
+                  class="text-stone-400 hover:text-secondary transition-colors no-underline"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Copyright and bottom bar */}
+  <div class="container mt-10 flex flex-col flex-wrap items-center justify-between gap-x-14 gap-y-6 border-t border-white/10 py-6 sm:flex-row-reverse">
+    <div class="flex items-center gap-4">
+      {siteConfig.darkMode && (
+        <LightModeSwitch label="Toggle dark mode" />
+      )}
+    </div>
+    <p class="text-sm text-stone-500">
+      &copy; {new Date().getFullYear()} {siteConfig.title}. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  @reference "../../styles/tailwind.config.css";
+
+  .footer-nav a,
+  .footer-contact a,
+  .footer-social a {
+    display: block;
+  }
+
+  /* Gradient footer background */
+  footer {
+    background: linear-gradient(to top, var(--secondary-dark), var(--background-dark));
+  }
+</style>

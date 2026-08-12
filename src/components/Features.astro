@@ -5,10 +5,13 @@ import { siteConfig } from '../data/site';
 <section id="services" class="features py-24" aria-labelledby="services-heading">
   <div class="container">
     <h2 id="services-heading" class="section-title text-center">Our Services</h2>
-    
-    <div class="grid gap-8 md:grid-cols-3">
-      {siteConfig.features.map(feature => (
-        <article class="feature-card card-glow-light p-8 rounded-3xl bg-[#0a0518]/50 backdrop-blur-sm hover:bg-[#0a0518]/70 transition-all duration-300">
+
+    <div class="grid gap-8 md:grid-cols-3 mt-16">
+      {siteConfig.features.map((feature, index) => (
+        <article
+          key={index}
+          class="feature-card card-glow-light p-8 rounded-3xl bg-[#0a0518]/50 backdrop-blur-sm hover:bg-[#0a0518]/70 transition-all duration-300"
+        >
           <span class="feature-icon text-4xl mb-6 block">{feature.icon}</span>
           <h3 class="feature-title text-xl font-semibold mb-4">{feature.title}</h3>
           <p class="feature-description text-gray-400 leading-relaxed">{feature.description}</p>
@@ -19,37 +22,37 @@ import { siteConfig } from '../data/site';
 </section>
 
 <style>
-.features {
-  background: radial-gradient(circle at center, #120a22 0%, #0a0518 100%);
-}
+  .features {
+    background: radial-gradient(circle at center, #120a22 0%, #0a0518 100%);
+  }
 
-.section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 3rem;
-  text-align: center;
-  color: white;
-}
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 3rem;
+    text-align: center;
+    color: white;
+  }
 
-.feature-card {
-  transition: transform 300ms ease, box-shadow 300ms ease;
-}
+  .feature-card {
+    transition: transform 300ms ease, box-shadow 300ms ease;
+  }
 
-.feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    0 0 40px var(--primary), 
-    inset 0 0 20px rgba(80, 22, 138, 0.1);
-}
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 0 40px var(--secondary),
+      inset 0 0 20px rgba(80, 22, 138, 0.1);
+  }
 
-.feature-icon {
-  display: block;
-  margin-bottom: 1.5rem;
-}
+  .feature-icon {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
 
-.feature-title {
-  color: white;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
+  .feature-title {
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
 </style>

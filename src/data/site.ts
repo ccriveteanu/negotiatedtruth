@@ -4,21 +4,24 @@ export const siteConfig = {
   description: "A production-quality public website built with Astro",
   url: "https://negotiatedtruth.github.io",
   base: "/",
-  
+
+  // Enable/disable dark mode
+  darkMode: true,
+
   navLinks: [
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Work", href: "#work" },
     { label: "Contact", href: "#contact" },
   ],
-  
+
   hero: {
     title: "Clarity Through Conversation",
     subtitle: "We help organizations find common ground through strategic communication and negotiation.",
     ctaText: "Get Started",
     ctaLink: "#contact",
   },
-  
+
   features: [
     {
       title: "Strategic Negotiation",
@@ -36,7 +39,7 @@ export const siteConfig = {
       icon: "📢",
     },
   ],
-  
+
   work: [
     {
       title: "Corporate Merger",
@@ -54,7 +57,7 @@ export const siteConfig = {
       description: "Negotiated collective bargaining agreement for major industry.",
     },
   ],
-  
+
   about: {
     headline: "About Us",
     text: "Founded on the belief that every conflict holds the seed of opportunity, we combine journalistic rigor with diplomatic finesse. Our team brings years of experience in negotiation, communication strategy, and conflict resolution to help organizations and individuals find common ground.",
@@ -64,17 +67,16 @@ export const siteConfig = {
       { number: "98%", label: "Client Satisfaction" },
     ],
   },
-  
+
   contact: {
     cta: "Ready to find your negotiated truth?",
     email: "contact@negotiatedtruth.example",
     phone: "+1 (555) 000-0000",
   },
-  
+
   footer: {
-    copyright: "© 2024 Negotiated Truth. All rights reserved.",
+    copyright: "© {year} Negotiated Truth. All rights reserved.",
     socialLinks: [
-      { label: "Twitter", href: "#" },
       { label: "LinkedIn", href: "#" },
       { label: "Email", href: "mailto:contact@negotiatedtruth.example" },
     ],
