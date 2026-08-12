@@ -2,18 +2,18 @@
 import { siteConfig } from '../data/site';
 ---
 
-<section id="about" class="about" aria-labelledby="about-heading">
+<section id="about" class="about py-24" aria-labelledby="about-heading">
   <div class="container about-inner">
-    <div class="about-content">
-      <h2 id="about-heading" class="section-title">{siteConfig.about.headline}</h2>
+    <div class="about-content text-center max-w-3xl mx-auto">
+      <h2 id="about-heading" class="section-title mb-8">{siteConfig.about.headline}</h2>
       
-      <p class="about-text">{siteConfig.about.text}</p>
+      <p class="about-text text-lg leading-relaxed mb-12">{siteConfig.about.text}</p>
       
-      <dl class="about-stats">
+      <dl class="about-stats grid grid-cols-3 gap-8">
         {siteConfig.about.stats.map(stat => (
           <div class="stat-item">
-            <dt class="stat-number">{stat.number}</dt>
-            <dd class="stat-label">{stat.label}</dd>
+            <dt class="stat-number text-4xl font-bold mb-2">{stat.number}</dt>
+            <dd class="stat-label text-gray-400">{stat.label}</dd>
           </div>
         ))}
       </dl>
@@ -23,43 +23,36 @@ import { siteConfig } from '../data/site';
 
 <style>
 .about {
-  background-color: var(--color-surface);
+  background: radial-gradient(circle at center, #120a22 0%, #0a0518 100%);
 }
 
-.about-inner {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 3rem;
+  color: white;
 }
 
 .about-text {
-  font-size: var(--text-md);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-xl);
+  font-size: 1.125rem;
+  color: #a0a0a0;
+  line-height: 1.8;
 }
 
 .about-stats {
   display: grid;
-  gap: var(--space-lg);
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-}
-
-.stat-item dt,
-.stat-item dd {
-  margin: 0;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 .stat-number {
-  font-family: var(--font-serif);
-  font-size: var(--text-3xl);
-  font-weight: bold;
-  color: var(--color-accent);
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
   line-height: 1.2;
 }
 
 .stat-label {
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
+  font-size: 1rem;
+  color: #a0a0a0;
 }
 </style>

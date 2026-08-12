@@ -2,69 +2,59 @@
 import { siteConfig } from '../data/site';
 ---
 
-<section id="contact" class="contact" aria-labelledby="contact-heading">
-  <div class="container contact-inner">
-    <h2 id="contact-heading" class="visually-hidden">Get in Touch</h2>
+<section id="contact" class="contact relative py-32 overflow-hidden">
+  {/* Background gradient */}
+  <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-[#0a0518] pointer-events-none"></div>
+  
+  <div class="container contact-inner relative z-10 text-center px-4">
+    <h2 class="visually-hidden">Get in Touch</h2>
     
-    <div class="contact-content">
-      <p class="contact-cta">{siteConfig.contact.cta}</p>
-      
-      <ul class="contact-methods">
-        <li class="contact-method">
-          <a href={`mailto:${siteConfig.contact.email}`} class="method-link">
-            <span class="method-icon" aria-hidden="true">✉️</span>
-            {siteConfig.contact.email}
-          </a>
-        </li>
-        <li class="contact-method">
-          <a href={`tel:${siteConfig.contact.phone}`} class="method-link">
-            <span class="method-icon" aria-hidden="true">📞</span>
-            {siteConfig.contact.phone}
-          </a>
-        </li>
-      </ul>
-    </div>
+    <p class="contact-cta mb-12">{siteConfig.contact.cta}</p>
+    
+    <ul class="contact-methods flex flex-col sm:flex-row gap-6 justify-center items-center">
+      <li class="contact-method">
+        <a href={`mailto:${siteConfig.contact.email}`} class="method-link inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-primary/30 hover:border-primary bg-[#0a0518]/50 backdrop-blur transition-all duration-300 hover:scale-105">
+          <span class="text-2xl" aria-hidden="true">✉️</span>
+          {siteConfig.contact.email}
+        </a>
+      </li>
+      <li class="contact-method">
+        <a href={`tel:${siteConfig.contact.phone}`} class="method-link inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-primary/30 hover:border-primary bg-[#0a0518]/50 backdrop-blur transition-all duration-300 hover:scale-105">
+          <span class="text-2xl" aria-hidden="true">📞</span>
+          {siteConfig.contact.phone}
+        </a>
+      </li>
+    </ul>
   </div>
 </section>
 
 <style>
 .contact {
-  background-color: var(--color-accent);
-  color: white;
-  text-align: center;
+  background: radial-gradient(circle at center, #120a22 0%, #0a0518 100%);
 }
 
 .contact-cta {
-  font-size: var(--text-xl);
-  margin-bottom: var(--space-lg);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: white;
+  margin-bottom: 3rem;
 }
 
 .contact-methods {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-lg);
-}
-
-.contact-method {
-  margin: 0;
+  gap: 1.5rem;
 }
 
 .method-link {
-  color: white;
-  font-size: var(--text-md);
+  color: #a0a0a0;
   text-decoration: none;
-  transition: opacity var(--transition-fast);
+  transition: all 200ms ease;
 }
 
 .method-link:hover,
 .method-link:focus {
-  opacity: 0.85;
-}
-
-.method-icon {
-  display: block;
-  font-size: var(--text-xl);
-  margin-bottom: var(--space-xs);
+  color: white;
+  border-color: var(--primary);
 }
 </style>

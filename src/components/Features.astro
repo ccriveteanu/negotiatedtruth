@@ -2,16 +2,16 @@
 import { siteConfig } from '../data/site';
 ---
 
-<section id="services" class="features" aria-labelledby="services-heading">
+<section id="services" class="features py-24" aria-labelledby="services-heading">
   <div class="container">
-    <h2 id="services-heading" class="section-title">Our Services</h2>
+    <h2 id="services-heading" class="section-title text-center">Our Services</h2>
     
-    <div class="features-grid">
+    <div class="grid gap-8 md:grid-cols-3">
       {siteConfig.features.map(feature => (
-        <article class="feature-card">
-          <span class="feature-icon" aria-hidden="true">{feature.icon}</span>
-          <h3 class="feature-title">{feature.title}</h3>
-          <p class="feature-description">{feature.description}</p>
+        <article class="feature-card card-glow-light p-8 rounded-3xl bg-[#0a0518]/50 backdrop-blur-sm hover:bg-[#0a0518]/70 transition-all duration-300">
+          <span class="feature-icon text-4xl mb-6 block">{feature.icon}</span>
+          <h3 class="feature-title text-xl font-semibold mb-4">{feature.title}</h3>
+          <p class="feature-description text-gray-400 leading-relaxed">{feature.description}</p>
         </article>
       ))}
     </div>
@@ -20,43 +20,36 @@ import { siteConfig } from '../data/site';
 
 <style>
 .features {
-  background-color: var(--color-surface);
+  background: radial-gradient(circle at center, #120a22 0%, #0a0518 100%);
 }
 
-.features-grid {
-  display: grid;
-  gap: var(--space-lg);
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 3rem;
+  text-align: center;
+  color: white;
 }
 
 .feature-card {
-  padding: var(--space-lg);
-  border-radius: var(--border-radius);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition: transform 300ms ease, box-shadow 300ms ease;
 }
 
-.feature-card:hover,
-.feature-card:focus-within {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(65, 73, 85, 0.1);
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 40px var(--primary), 
+    inset 0 0 20px rgba(80, 22, 138, 0.1);
 }
 
 .feature-icon {
   display: block;
-  font-size: var(--text-3xl);
-  margin-bottom: var(--space-md);
+  margin-bottom: 1.5rem;
 }
 
 .feature-title {
-  font-size: var(--text-lg);
-  margin-bottom: var(--space-sm);
-}
-
-.feature-description {
-  color: var(--color-text-secondary);
-}
-
-@media (max-width: 768px) {
-  .features-grid { grid-template-columns: 1fr; }
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
 }
 </style>

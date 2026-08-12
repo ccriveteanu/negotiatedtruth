@@ -10,7 +10,11 @@ const title = "Negotiated Truth | Finding common ground through conversation";
 const description = "A production-quality public website built with Astro for GitHub Pages.";
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout 
+  title={title} 
+  description={description}
+  header={{ hidden: false }}
+>
   <Hero />
   <Features />
   <FeaturedWork />

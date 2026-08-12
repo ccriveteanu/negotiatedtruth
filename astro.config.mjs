@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import tailwind from '@tailwindcss/vite';
 
 // https://docs.astro.build/en/guides/deploy/
 export default defineConfig({
@@ -9,5 +10,7 @@ export default defineConfig({
   
   site: 'https://negotiatedtruth.github.io',
   
-  integrations: [],
+  integrations: [
+    tailwind(),
+  ],
 });

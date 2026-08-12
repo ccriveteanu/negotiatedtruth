@@ -1,0 +1,57 @@
+---
+interface Props {
+  fixed?: boolean;
+  isHome?: boolean;
+}
+
+const { fixed, isHome } = Astro.props as Props;
+
+const isFixed = !!fixed;
+---
+
+{/* Fixed banner header */}
+{isFixed && (
+  <header id="header" role="banner" class="text-text dark:text-text-dark relative z-50 w-full bg-[#0a0518] shadow-lg">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <a href="/" aria-label="Negotiated Truth Home" class="text-2xl font-bold tracking-tight">
+          Negotiated Truth
+        </a>
+        
+        {/* Desktop Nav */}
+        <nav class="hidden md:flex items-center gap-8">
+          {[
+            { label: 'About', href: '#about' },
+            { label: 'Services', href: '#services' },
+            { label: 'Work', href: '#work' },
+            { label: 'Contact', href: '#contact' },
+          ].map(link => (
+            <a 
+              href={link.href} 
+              class="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        
+        {/* Mobile Menu Button */}
+        <button 
+          class="md:hidden text-gray-300 hover:text-white p-2"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+)}
+
+<style>
+#header {
+  position: sticky;
+  top: 0;
+}
+</style>

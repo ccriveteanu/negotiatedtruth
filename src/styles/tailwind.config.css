@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 200ms ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #7c2d9b;
+    transform: translateY(-2px);
+  }
+  
+  .card-glow-light {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.07),
+      0 0 60px var(--primary), 
+      inset 0 0 40px rgba(80, 22, 138, 0.06);
+  }
+}
