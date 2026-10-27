@@ -1,23 +1,147 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import FeaturedWork from '../components/FeaturedWork.astro';
-import About from '../components/About.astro';
-import Contact from '../components/Contact.astro';
-
-const title = "Negotiated Truth | Finding common ground through conversation";
-const description = "A production-quality public website built with Astro for GitHub Pages.";
+import Mark from '../components/brand/Mark.astro';
+import PostRow from '../components/PostRow.astro';
+import EditorialStudy from '../components/EditorialStudy.astro';
+import { getPosts, href, readingTime } from '../lib/content';
+import { topics, siteConfig } from '../data/site';
+const posts = await getPosts();
+const featured = posts.find((p) => p.data.featured) || posts[0];
 ---
 
-<MainLayout 
-  title={title} 
-  description={description}
-  header={{ hidden: false }}
->
-  <Hero />
-  <Features />
-  <FeaturedWork />
-  <About />
-  <Contact />
+<MainLayout>
+  <section class="shell home-intro">
+    <div class="intro-top">
+      <span class="eyebrow">
+        <span class="status-dot"></span> An independent perspective
+      </span>
+      <span class="edition-label">STRATEGY / TECHNOLOGY / AI</span>
+    </div>
+    <div class="intro-grid">
+      <h1>
+        Better questions.
+        <br />
+        <em>Clearer decisions.</em>
+      </h1>
+      <div class="intro-note">
+        <span class="note-line"></span>
+        <p>
+          A personal journal about the ideas, systems and choices shaping the
+          way we work.
+        </p>
+        <a class="text-link" href={href('about/')}>
+          By {siteConfig.author} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+    <div class="intro-bottom">
+      <span>Thinking in public. Keeping an open mind.</span>
+      <a href="#latest">
+        Explore the journal <span aria-hidden="true">↓</span>
+      </a>
+    </div>
+  </section>
+  {featured && (
+    <section class="shell featured-section" aria-labelledby="featured-heading">
+      <div class="section-heading">
+        <h2 id="featured-heading">A place to start</h2>
+        <span>THE EDITOR'S PICK</span>
+      </div>
+      <article class="featured-article">
+        <div class="featured-copy">
+          <div class="meta">
+            <a href={href(`topics/${featured.data.topic}/`)}>
+              {topics.find((t) => t.id === featured.data.topic)?.name}
+            </a>
+            <span>·</span>
+            <span>{featured.data.type}</span>
+            {featured.data.sample && <span class="sample-tag">Sample</span>}
+          </div>
+          <h3>
+            <a href={href(`writing/${featured.id}/`)}>{featured.data.title}</a>
+          </h3>
+          <p>{featured.data.description}</p>
+          <a class="read-link" href={href(`writing/${featured.id}/`)}>
+            Read the essay <span aria-hidden="true">↗</span>
+          </a>
+          <span class="featured-time">{readingTime(featured)} min read</span>
+        </div>
+        <div class="featured-art">
+          <EditorialStudy />
+        </div>
+      </article>
+    </section>
+  )}
+  <section
+    class="shell journal-section"
+    id="latest"
+    aria-labelledby="latest-heading"
+  >
+    <div class="journal-main">
+      <div class="section-heading">
+        <h2 id="latest-heading">From the journal</h2>
+        <a href={href('writing/')}>All writing ↗</a>
+      </div>
+      <p class="preview-note">
+        First edition preview · The articles below are sample content for this
+        design.
+      </p>
+      {posts.map((post, i) => (
+        <PostRow post={post} number={i + 1} />
+      ))}
+    </div>
+    <aside class="journal-aside">
+      <span class="eyebrow">A working philosophy</span>
+      <h2>
+        Conviction.
+        <br />
+        With room
+        <br />
+        to change.
+      </h2>
+      <p>
+        The most useful ideas survive a good question. This is a space to
+        examine assumptions, connect disciplines and make better sense of what
+        comes next.
+      </p>
+      <Mark class="aside-mark" />
+      <a href={href('about/')} class="text-link">
+        About the journal ↗
+      </a>
+      <div class="rss-aside">
+        <span class="eyebrow">At your own pace</span>
+        <h3>
+          Keep a little
+          <br />
+          perspective.
+        </h3>
+        <p>
+          New writing, delivered to your feed reader. No algorithm in between.
+        </p>
+        <a href={href('rss.xml')} class="text-link">
+          Follow via RSS ↗
+        </a>
+      </div>
+    </aside>
+  </section>
+  <section class="topics-section">
+    <div class="shell">
+      <div class="section-heading">
+        <h2>Three lenses. One conversation.</h2>
+        <a href={href('topics/')}>Explore the topics ↗</a>
+      </div>
+      <div class="topic-grid">
+        {topics.map((topic) => (
+          <a class="topic-card" href={href(`topics/${topic.id}/`)}>
+            <span class="topic-number">/{topic.number}</span>
+            <h3>
+              {topic.name}
+              <span aria-hidden="true">↗</span>
+            </h3>
+            <p>{topic.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 </MainLayout>

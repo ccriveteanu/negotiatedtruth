@@ -1,0 +1,45 @@
+---
+import { href, formatDate, readingTime, type Post } from '../lib/content';
+import { topics } from '../data/site';
+interface Props {
+  post: Post;
+  number?: number;
+}
+const { post, number } = Astro.props;
+const topic = topics.find((t) => t.id === post.data.topic)!;
+---
+
+<article
+  class="post-row"
+  data-post
+  data-title={`${post.data.title} ${post.data.description} ${topic.name}`.toLowerCase()}
+>
+  {number !== undefined && (
+    <span class="row-number">{String(number).padStart(2, '0')}</span>
+  )}
+  <div class="post-row-body">
+    <div class="meta">
+      <a href={href(`topics/${topic.id}/`)}>{topic.name}</a>
+      <span>·</span>
+      <span>{post.data.type}</span>
+      {post.data.sample && <span class="sample-tag">Sample</span>}
+    </div>
+    <h2>
+      <a href={href(`writing/${post.id}/`)}>{post.data.title}</a>
+    </h2>
+    <p>{post.data.description}</p>
+    <div class="post-row-end">
+      <span>
+        {formatDate(post.data.publishedAt)} <span class="meta-dot">·</span>{' '}
+        {readingTime(post)} min read
+      </span>
+      <a
+        href={href(`writing/${post.id}/`)}
+        aria-label={`Read ${post.data.title}`}
+      >
+        Read the {post.data.type.toLowerCase()}{' '}
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</article>

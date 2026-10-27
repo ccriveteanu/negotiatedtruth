@@ -1,0 +1,40 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { topics } from '../../data/site';
+import { href, getPosts } from '../../lib/content';
+const posts = await getPosts();
+---
+
+<MainLayout
+  title="Topics"
+  description="Explore the journal through three connected lenses: strategy, technology and AI."
+>
+  <section class="shell page-intro">
+    <span class="eyebrow">Connected thinking</span>
+    <h1>
+      Three lenses.
+      <br />
+      <em>One conversation.</em>
+    </h1>
+    <p>
+      The questions rarely stay in one discipline. Start wherever your curiosity
+      takes you.
+    </p>
+  </section>
+  <section class="shell topic-directory">
+    {topics.map((t) => (
+      <a class="topic-directory-row" href={href(`topics/${t.id}/`)}>
+        <span class="topic-number">/{t.number}</span>
+        <div>
+          <h2>
+            {t.name} <span aria-hidden="true">↗</span>
+          </h2>
+          <p>{t.description}</p>
+        </div>
+        <span class="topic-count">
+          {posts.filter((p) => p.data.topic === t.id).length} sample article
+        </span>
+      </a>
+    ))}
+  </section>
+</MainLayout>

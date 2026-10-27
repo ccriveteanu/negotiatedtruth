@@ -1,120 +1,56 @@
-# Negotiated Truth Website
+# NegotiatedTruth
 
-A production-quality public website built with [Astro](https://astro.build) and deployed to GitHub Pages.
+A personal journal about strategy, technology and AI. Built with Astro and Markdown, deployed as static files to GitHub Pages.
 
-## Quick Start
+## Develop and verify
 
-### Local Development
+Use the Node version in `.nvmrc`, then `npm ci`.
 
-```bash
-# Install dependencies (if not already done)
-npm install
+- `npm run dev -- --background` starts the local preview. Use `npm exec astro -- dev status`, `npm exec astro -- dev logs`, and `npm exec astro -- dev stop` to manage it.
+- `npm run verify` checks types, builds the site, and validates internal links, assets, publication filtering, sample exclusions and structured data.
+- `npm run build` creates `dist/`; `npm run preview` serves that production build.
 
-# Start development server
-npm run dev
+## Write an article
 
-# Build for production
-npm run build
+Add a Markdown file in `src/content/writing/`. Its filename becomes its stable article slug. Use this front matter:
 
-# Preview the production build locally
-npm run preview
+```yaml
+title: 'A clear title'
+description: 'A short summary for the archive, social card and RSS feed.'
+publishedAt: 2026-10-27T09:00:00+02:00
+topic: strategy # strategy | technology | ai
+type: Essay # Essay | Field note | Experiment
+draft: true
+sample: false
+featured: false
 ```
 
-The site will be available at `http://localhost:4321` during development.
+Use explicit timezone offsets (Bucharest is UTC+2 in winter and UTC+3 in summer). Dates are displayed in Europe/Bucharest. Add `updatedAt` for a substantive revision.
 
-## Project Structure
+Drafts and future articles are excluded from all generated outputs. **Source files committed to this public repository remain publicly readable**, including drafts. Keep confidential writing elsewhere.
 
-```
-.
-├── src/
-│   ├── components/      # Reusable Astro components
-│   │   ├── Header.astro
-│   │   ├── Footer.astro
-│   │   ├── Hero.astro
-│   │   ├── Features.astro
-│   │   └── ...
-│   ├── layouts/         # Page layouts
-│   │   └── MainLayout.astro
-│   ├── styles/          # Global styles and design tokens
-│   │   ├── global.css
-│   │   └── design-tokens.css
-│   ├── data/
-│   │   └── site.ts      # Site configuration and content
-│   ├── pages/
-│   │   ├── index.astro  # Homepage
-│   │   └── 404.astro    # Custom 404 page
-│   └── favicon.svg      # Favicon (placeholder)
-├── .github/workflows/   # GitHub Actions for deployment
-└── astro.config.mjs     # Astro configuration
+Three clearly labelled sample posts make the first design reviewable. They appear in the journal but are excluded from RSS and the sitemap and marked `noindex`. Replace them with real writing, set `sample: false`, and remove the preview notices in the home/archive/about pages before launch. `_draft-example.md` and `_future-example.md` demonstrate publication filtering. The initial RSS feed intentionally has no items.
+
+Only publish work that the author has reviewed. The About copy is provisional and should be checked along with the byline before launch.
+
+## Deployment and domain
+
+The canonical domain defaults to `https://negotiatedtruth.com` with root paths. Pull requests run the verification workflow without deploying. Merging to `main` runs verification and deploys the successful artifact to GitHub Pages.
+
+Before merging the first release, verify the domain in GitHub, set the repository's Pages custom domain, configure the appropriate DNS records, and enable HTTPS when the certificate is ready. No DNS or Pages-domain settings are changed by this branch. The custom Actions workflow does not need a CNAME file.
+
+For a temporary GitHub project-page deployment before domain setup, build with:
+
+```sh
+SITE_URL=https://ccriveteanu.github.io BASE_PATH=/negotiatedtruth/ npm run verify
 ```
 
-## Deployment to GitHub Pages
+Set the same two variables in the build workflow if you choose that temporary deployment. Remove them for domain cutover. See [GitHub custom-domain guidance](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
-### For User/Organization Pages (`<username>.github.io`)
+Roll back by reverting the offending commit on `main` or redeploying a known-good revision. A failed verification/build does not replace the live site.
 
-1. Update `astro.config.mjs`:
-   ```javascript
-   base: '/',
-   site: 'https://<username>.github.io',
-   ```
+## Identity and assets
 
-2. Push your changes to the repository.
+The geometric symbol is extracted from the supplied vector logo. The old wordmark is replaced with NegotiatedTruth. The site uses an independent ink-green, lime and near-white design system with locally served Geist and a system serif reading font. `public/brand/mark.svg` is the symbol; `public/brand/negotiatedtruth.svg` is a portable lockup; `social.png` is a social preview image. Master brand files stay outside the public website.
 
-3. In your GitHub repository, go to **Settings → Pages**:
-   - Under **Build and deployment**, select **GitHub Actions**
-   - No additional configuration needed
-
-4. Your site will be live at `https://<username>.github.io` after the workflow completes.
-
-### For Project Pages (`<username>.github.io/<repo>`)
-
-1. Update `astro.config.mjs`:
-   ```javascript
-   base: '/<repository-name>/',
-   site: 'https://<username>.github.io/<repository-name>/',
-   ```
-
-2. Push your changes and enable GitHub Pages as described above.
-
-3. Your site will be live at `https://<username>.github.io/<repository-name>/`.
-
-### Custom Domain
-
-1. Add a `CNAME` file in the root of your project:
-   ```
-   yourdomain.com
-   ```
-
-2. Update `astro.config.mjs`:
-   ```javascript
-   site: 'https://yourdomain.com',
-   ```
-
-3. Configure your DNS provider with the appropriate records for GitHub Pages.
-
-## Content Configuration
-
-Edit `src/data/site.ts` to customize:
-- Site title and description
-- Navigation links
-- Hero section content
-- Services/features
-- Featured work
-- About section
-- Contact information
-
-## Design System
-
-This site uses a custom CSS design system with tokens defined in `src/styles/design-tokens.css`. No external UI framework is used.
-
-## Tech Stack
-
-- **Astro** 5.x - Static site generator
-- **TypeScript** - Type-safe development
-- **CSS3** - Custom styling with design tokens
-- **GitHub Pages** - Free static hosting
-- **GitHub Actions** - Automated deployment
-
----
-
-Built with 🧘‍♂️ for clarity through conversation.
+No analytics, cookies, remote fonts, accounts or external form service are used. Archive search filters the loaded titles and summaries in the browser.

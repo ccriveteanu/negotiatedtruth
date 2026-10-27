@@ -1,0 +1,54 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Mark from '../components/brand/Mark.astro';
+import { href } from '../lib/content';
+import { siteConfig } from '../data/site';
+---
+
+<MainLayout
+  title="About"
+  description="About NegotiatedTruth, a personal journal by Cătălin Criveteanu about strategy, technology and AI."
+>
+  <section class="shell page-intro">
+    <span class="eyebrow">Behind the journal</span>
+    <h1>
+      A point of view.
+      <br />
+      <em>Open to a better one.</em>
+    </h1>
+  </section>
+  <section class="shell about-grid">
+    <div class="about-art">
+      <Mark />
+      <span>NEGOTIATEDTRUTH / A PERSONAL JOURNAL</span>
+    </div>
+    <div class="prose">
+      <h2>Welcome. I'm Cătălin.</h2>
+      <p>
+        NegotiatedTruth is my personal journal about strategy, technology and
+        AI: a place to explore how ideas become decisions, and what changes when
+        those decisions meet the real world.
+      </p>
+      <p>
+        The name is an invitation to examine a perspective, ask a better
+        question and leave room for what we haven't understood yet.
+      </p>
+      <h2>What you'll find here</h2>
+      <p>
+        Essays that develop an argument. Field notes that capture a useful
+        observation. Experiments that make an idea concrete. Across all three,
+        the aim is clarity, curiosity and practical understanding.
+      </p>
+      <h2>A journal in the making</h2>
+      <p>
+        This first edition includes clearly labelled sample articles while the
+        original writing and personal introduction are prepared.
+      </p>
+      <p>
+        <a href={siteConfig.github}>Find me on GitHub ↗</a>
+        <br />
+        <a href={href('rss.xml')}>Follow the journal via RSS ↗</a>
+      </p>
+    </div>
+  </section>
+</MainLayout>

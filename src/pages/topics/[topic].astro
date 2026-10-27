@@ -1,0 +1,40 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PostRow from '../../components/PostRow.astro';
+import { topics } from '../../data/site';
+import { getPosts, href } from '../../lib/content';
+export function getStaticPaths() {
+  return topics.map((topic) => ({
+    params: { topic: topic.id },
+    props: { topic },
+  }));
+}
+const { topic } = Astro.props;
+const posts = (await getPosts()).filter((p) => p.data.topic === topic.id);
+---
+
+<MainLayout title={topic.name} description={topic.description}>
+  <section class="shell page-intro">
+    <a class="back-link" href={href('topics/')}>
+      ← All topics
+    </a>
+    <span class="eyebrow">Lens / {topic.number}</span>
+    <h1>
+      {topic.name}
+      <span class="accent-dot">.</span>
+    </h1>
+    <p>{topic.description}</p>
+  </section>
+  <section class="shell archive-section">
+    <div class="section-heading">
+      <h2>The writing</h2>
+      <span>
+        {posts.length} {posts.length === 1 ? 'ARTICLE' : 'ARTICLES'}
+      </span>
+    </div>
+    {posts.map((p, i) => (
+      <PostRow post={p} number={i + 1} />
+    ))}
+    {posts.length === 0 && <p>Writing on this topic is coming soon.</p>}
+  </section>
+</MainLayout>

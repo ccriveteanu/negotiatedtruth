@@ -1,0 +1,115 @@
+---
+import { render } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import PostRow from '../../components/PostRow.astro';
+import {
+  getPosts,
+  href,
+  formatDate,
+  readingTime,
+  type Post,
+} from '../../lib/content';
+import { topics, siteConfig } from '../../data/site';
+export async function getStaticPaths() {
+  return (await getPosts()).map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const topic = topics.find((t) => t.id === post.data.topic)!;
+const related = (await getPosts())
+  .filter((p) => p.id !== post.id)
+  .sort(
+    (a, b) =>
+      Number(b.data.topic === post.data.topic) -
+      Number(a.data.topic === post.data.topic),
+  )
+  .slice(0, 2);
+---
+
+<MainLayout
+  title={post.data.title}
+  description={post.data.description}
+  noindex={post.data.sample}
+  article={
+    post.data.sample
+      ? undefined
+      : {
+          published: post.data.publishedAt.toISOString(),
+          updated: post.data.updatedAt?.toISOString(),
+        }
+  }
+>
+  <article class="shell article-page">
+    <header class="article-header">
+      <a class="back-link" href={href('writing/')}>
+        ← All writing
+      </a>
+      <div class="meta">
+        <a href={href(`topics/${topic.id}/`)}>{topic.name}</a>
+        <span>·</span>
+        <span>{post.data.type}</span>
+      </div>
+      <h1>{post.data.title}</h1>
+      <p class="standfirst">{post.data.description}</p>
+      <div class="article-byline">
+        <span>
+          {post.data.sample
+            ? 'Sample article · Design preview'
+            : siteConfig.author}
+        </span>
+        <span>
+          {formatDate(post.data.publishedAt)} <span class="meta-dot">·</span>{' '}
+          {readingTime(post)} min read
+        </span>
+      </div>
+      {post.data.updatedAt && (
+        <p class="updated">Updated {formatDate(post.data.updatedAt)}</p>
+      )}
+    </header>
+    {post.data.sample && (
+      <div class="sample-notice">
+        <strong>A note on this piece</strong>
+        <p>
+          This is illustrative content created for the first website preview. It
+          shows the reading experience and is not a published essay by the
+          author.
+        </p>
+      </div>
+    )}
+    <div class="article-grid">
+      <aside class="article-contents">
+        <nav aria-label="In this article">
+          <span class="eyebrow">On this page</span>
+          {headings
+            .filter((h) => h.depth === 2)
+            .map((h) => (
+              <a href={`#${h.slug}`}>{h.text}</a>
+            ))}
+        </nav>
+      </aside>
+      <div class="prose">
+        <Content />
+        <div class="article-signoff">
+          <span class="eyebrow">Keep the conversation going</span>
+          <p>More perspectives on strategy, technology and AI.</p>
+          <a href={href('rss.xml')}>Follow the journal via RSS ↗</a>
+        </div>
+      </div>
+    </div>
+  </article>
+  <section class="shell related-section">
+    <div class="section-heading">
+      <h2>Continue exploring</h2>
+      <a href={href('writing/')}>All writing ↗</a>
+    </div>
+    {related.map((p) => (
+      <PostRow post={p} />
+    ))}
+  </section>
+</MainLayout>
