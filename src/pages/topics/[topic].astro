@@ -32,8 +32,8 @@ const posts = (await getPosts()).filter((p) => p.data.topic === topic.id);
         {posts.length} {posts.length === 1 ? 'ARTICLE' : 'ARTICLES'}
       </span>
     </div>
-    {posts.map((p, i) => (
-      <PostRow post={p} number={i + 1} />
+    {posts.map((p) => (
+      <PostRow post={p} />
     ))}
     {posts.length === 0 && <p>Writing on this topic is coming soon.</p>}
   </section>

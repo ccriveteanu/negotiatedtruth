@@ -1,0 +1,13 @@
+---
+interface Props {
+  label: string;
+  text: string;
+}
+const { label, text } = Astro.props;
+---
+
+<aside class="reflection" aria-label={label}>
+  <span class="annotation-dot" aria-hidden="true"></span>
+  <h2>{label}</h2>
+  <p>{text}</p>
+</aside>

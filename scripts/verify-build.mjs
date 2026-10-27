@@ -34,6 +34,23 @@ for (const file of htmlFiles) {
     /<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g,
   ))
     JSON.parse(match[1]);
+  const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, fragment] of html.matchAll(/href="#([^"]+)"/g)) {
+    assert(
+      ids.has(decodeURIComponent(fragment)),
+      `Broken section/footnote link in ${file}: #${fragment}`,
+    );
+  }
+  for (const [, srcset] of html.matchAll(/\bsrcset="([^"]+)"/g)) {
+    for (const candidate of srcset.split(',')) {
+      const url = candidate.trim().split(/\s+/)[0];
+      if (!url.startsWith('/') || url.startsWith('//')) continue;
+      const local = decodeURIComponent(url.split(/[?#]/)[0])
+        .slice(base.length)
+        .replace(/^\//, '');
+      await access(join(root, local));
+    }
+  }
   for (const [, attr, value] of html.matchAll(/\b(href|src)="([^"]+)"/g)) {
     if (!value.startsWith('/') || value.startsWith('//')) continue;
     const path = decodeURIComponent(value.split(/[?#]/)[0]);
@@ -82,6 +99,23 @@ for (const source of sources) {
     continue;
   }
   const html = await readFile(path, 'utf8');
+  const visual = /^type: ['"]?Visual essay['"]?$/m.test(frontmatter);
+  const words = text.split('---').slice(2).join('---').split(/\s+/).length;
+  if (visual) {
+    assert(
+      html.includes('article-page--visual') && html.includes('chapter-nav'),
+      `Missing visual-story navigation: ${id}`,
+    );
+    assert(
+      html.includes('story-cover-art') && html.includes('alt="'),
+      `Missing visual-story artwork: ${id}`,
+    );
+  } else if (words < 1400 && !/^contents: true$/m.test(frontmatter)) {
+    assert(
+      !html.includes('class="chapter-nav"'),
+      `Short essay has unnecessary contents navigation: ${id}`,
+    );
+  }
   if (sample) {
     assert(html.includes('noindex, follow'), `Sample is indexable: ${id}`);
     assert(
@@ -103,6 +137,25 @@ for (const source of sources) {
     );
   }
 }
+const home = await readFile(join(root, 'index.html'), 'utf8');
+assert(
+  !/journal-aside|featured-section|topics-section/.test(home),
+  'Promotional homepage sections returned',
+);
+const visualExample = await readFile(
+  join(root, 'writing/a-faster-answer-isnt-a-finished-task/index.html'),
+  'utf8',
+);
+assert(
+  visualExample.includes('5 minutes per task') &&
+    visualExample.includes('class="review-controls" hidden'),
+  'The worked example must have a readable static default and progressively enhanced controls',
+);
+assert(
+  visualExample.includes('tabindex="0"') &&
+    visualExample.includes('decision-path-mobile'),
+  'Mobile diagram alternative or focusable detailed figure is missing',
+);
 console.log(
   `Verified ${htmlFiles.length} HTML pages: local assets and links, base path, structured data, draft/date filtering, sample exclusion, feed and sitemap.`,
 );

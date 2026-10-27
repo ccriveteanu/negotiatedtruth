@@ -1,7 +1,7 @@
 export const siteConfig = {
   title: 'NegotiatedTruth',
   description:
-    'A personal journal about strategy, technology and AI. Better questions for clearer decisions.',
+    'A personal journal by Cătălin Criveteanu. Essays, notes and visual stories about strategy, technology and AI.',
   author: 'Cătălin Criveteanu',
   github: 'https://github.com/ccriveteanu',
 };

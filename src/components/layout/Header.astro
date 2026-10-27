@@ -4,7 +4,6 @@ import { href } from '../../lib/content';
 const path = Astro.url.pathname;
 const links = [
   { label: 'Writing', path: 'writing/' },
-  { label: 'Topics', path: 'topics/' },
   { label: 'About', path: 'about/' },
 ];
 ---
@@ -23,16 +22,8 @@ const links = [
           {link.label}
         </a>
       ))}
-      <a class="rss-link" href={href('rss.xml')}>
-        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <circle cx="4" cy="16" r="1.4" fill="currentColor" />
-          <path
-            d="M3 9a8 8 0 0 1 8 8M3 3a14 14 0 0 1 14 14"
-            stroke="currentColor"
-            stroke-width="1.6"
-          />
-        </svg>
-        <span>RSS</span>
+      <a href={href('rss.xml')} class="rss-link" aria-label="Follow via RSS">
+        RSS <span aria-hidden="true">↗</span>
       </a>
     </nav>
   </div>

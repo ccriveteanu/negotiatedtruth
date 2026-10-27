@@ -5,18 +5,20 @@ publishedAt: 2026-10-26T09:00:00+02:00
 topic: strategy
 type: Essay
 sample: true
-featured: true
+reflection:
+  label: 'What would change my mind?'
+  text: 'A comparison that reveals a constraint we had not noticed. Sometimes the act of comparing options helps us discover the question. The useful test is whether the exercise changes the decision.'
 ---
 
-A team can spend weeks improving an answer to a question that no longer matters. The slides get sharper. The estimates become more precise. The original assumption quietly disappears from view.
+I don’t find a feature comparison very useful until I can finish this sentence: we need to choose something because…
 
-This is one reason to treat the question itself as a piece of work.
+It is a small test. But if I can’t explain the decision, a longer list of features probably won’t help me make it.
 
 ## Start with the decision
 
 “Which tool should we buy?” sounds concrete. But it can hide several different decisions: what work needs to change, which constraints actually matter, and how we will know whether the change helped.
 
-A useful first move is to write down the decision in one sentence. Then write what would happen if we made no change at all. The distance between those two statements often reveals more than a feature comparison.
+My starting point is to write down the decision in one sentence.[^1] Then write what would happen if we made no change at all. The distance between those two statements often reveals more than a feature comparison.
 
 > A good question makes the uncertainty easier to see, even before it makes the answer easier to find.
 
@@ -49,3 +51,5 @@ The point is not to create another approval process. It is to make learning part
 Before the next comparison, roadmap or proposal, ask: **what decision will this help someone make?**
 
 If the answer is hard to express, the next useful piece of work may be a better question.
+
+[^1]: In this example, “decision” means a choice with a consequence. A general topic such as “our AI strategy” needs narrowing before it can do that job.

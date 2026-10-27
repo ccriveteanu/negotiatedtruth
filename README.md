@@ -19,19 +19,35 @@ title: 'A clear title'
 description: 'A short summary for the archive, social card and RSS feed.'
 publishedAt: 2026-10-27T09:00:00+02:00
 topic: strategy # strategy | technology | ai
-type: Essay # Essay | Field note | Experiment
+type: Essay # Essay | Field note | Experiment | Visual essay
 draft: true
 sample: false
-featured: false
+contents: false # optional; long articles get a contents list automatically
 ```
 
 Use explicit timezone offsets (Bucharest is UTC+2 in winter and UTC+3 in summer). Dates are displayed in Europe/Bucharest. Add `updatedAt` for a substantive revision.
 
 Drafts and future articles are excluded from all generated outputs. **Source files committed to this public repository remain publicly readable**, including drafts. Keep confidential writing elsewhere.
 
-Three clearly labelled sample posts make the first design reviewable. They appear in the journal but are excluded from RSS and the sitemap and marked `noindex`. Replace them with real writing, set `sample: false`, and remove the preview notices in the home/archive/about pages before launch. `_draft-example.md` and `_future-example.md` demonstrate publication filtering. The initial RSS feed intentionally has no items.
+Four clearly labelled sample posts make the first design reviewable. They appear in the journal but are excluded from RSS and the sitemap and marked `noindex`. Replace them with real writing, set `sample: false`, and remove the provisional preview wording in the archive/About pages before launch. `_draft-example.md` and `_future-example.md` demonstrate publication filtering. The initial RSS feed intentionally has no items.
 
-Only publish work that the author has reviewed. The About copy is provisional and should be checked along with the byline before launch.
+## Editorial formats
+
+The home page leads with the newest article and takes its opening paragraphs directly from its Markdown. It then mixes compact field notes, plain essay entries and illustrated visual-essay entries in date order. No featured flag or dedicated promotional sidebar is used.
+
+Ordinary essays use a centred reading column. Contents navigation appears automatically at 1,400 words with at least four sections; `contents: true` or `false` overrides that choice. Markdown footnotes are supported. Optional closing reflections belong in the front matter:
+
+```yaml
+reflection:
+  label: 'What would change my mind?' # or 'What I’m testing next'
+  text: 'A short, specific reflection appropriate to this piece.'
+```
+
+Set `type: Visual essay` for a wider cover, numbered sections and chapter navigation. Supply article-specific artwork using `cover`, `coverAlt`, and optionally `coverMobile` with file paths relative to the Markdown. Keep a readable narrative and captions alongside the images. The sample visual story demonstrates an original workflow diagram and acceptance map, with a stacked cover for small screens and a keyboard-accessible scrolling figure for the detailed map.
+
+`visualTool: review-time` adds the sample's optional comparison of draft and review time. Its illustrative default result is readable without JavaScript; controls appear only when the enhancement loads. Only use this tool for content to which its declared assumptions apply. For a different interactive story, add a purpose-built component and a corresponding schema option. Respect reduced-motion preferences; no scroll animation is required by the format.
+
+Only publish work that the author has reviewed. The personal sample voice and About copy are provisional and should be checked along with the byline before launch.
 
 ## Deployment and domain
 

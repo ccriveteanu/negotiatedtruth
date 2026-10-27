@@ -23,3 +23,20 @@ export async function getPosts({ includeSamples = true } = {}) {
     )
   ).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 }
+
+// Pull the opening from the article itself so the home page stays in sync.
+export function openingParagraphs(post: Post, limit = 2) {
+  return (post.body || '')
+    .split(/^##? /m)[0]
+    .trim()
+    .split(/\n\s*\n/)
+    .filter((p) => p && !/^[#>|`!<\[]/.test(p.trim()))
+    .slice(0, limit)
+    .map((p) =>
+      p
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/\[\^[^\]]+\]/g, '')
+        .replace(/[*_`]/g, '')
+        .replace(/\n/g, ' '),
+    );
+}

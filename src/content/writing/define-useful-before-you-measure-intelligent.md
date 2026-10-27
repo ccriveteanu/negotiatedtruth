@@ -1,7 +1,7 @@
 ---
 title: 'Define useful before you measure intelligent'
 description: 'An impressive AI demonstration is a starting point. A useful system needs a clear standard for the work it is meant to do.'
-publishedAt: 2026-10-24T09:00:00+02:00
+publishedAt: 2026-10-23T09:00:00+02:00
 topic: ai
 type: Essay
 sample: true

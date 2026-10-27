@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" fill="none">
+  <rect width="1000" height="430" fill="#edf1e7"/>
+  <g fill="#183e3b" font-family="Arial,sans-serif"><text x="54" y="58" font-size="12" letter-spacing="2">FROM REQUEST TO ACCEPTED WORK</text><text x="54" y="386" font-size="13">A generated answer crosses a boundary. A finished task meets a standard.</text></g>
+  <path d="M225 210H300M480 210H555M740 210H810" stroke="#183e3b" stroke-width="2"/><path d="m293 204 7 6-7 6m255-12 7 6-7 6m255-12 7 6-7 6" stroke="#183e3b" stroke-width="2"/>
+  <path d="M80 133H225V286H54V218Z" fill="#fafbf7" stroke="#183e3b" stroke-width="2"/>
+  <path d="M328 133H480V286H300V218Z" fill="#fafbf7" stroke="#183e3b" stroke-width="2"/>
+  <path d="M583 133H740V286H555V218Z" fill="#d4ed64" stroke="#183e3b" stroke-width="2"/>
+  <circle cx="879" cy="210" r="68" fill="#183e3b"/>
+  <g fill="#183e3b" font-family="Arial,sans-serif"><text x="80" y="173" font-size="11" letter-spacing="1">01</text><text x="80" y="225" font-size="25">Request</text><text x="328" y="173" font-size="11" letter-spacing="1">02</text><text x="328" y="225" font-size="25">Draft</text><text x="583" y="173" font-size="11" letter-spacing="1">03</text><text x="583" y="225" font-size="25">Review</text></g>
+  <g fill="#fafbf7" font-family="Arial,sans-serif" text-anchor="middle"><text x="879" y="207" font-size="19">Accepted</text><text x="879" y="232" font-size="19">work</text></g>
+  <path d="M648 299V332H390V299" stroke="#183e3b" stroke-width="1.5" stroke-dasharray="4 5"/><path d="m384 307 6-8 6 8" stroke="#183e3b" stroke-width="1.5"/><text x="470" y="322" fill="#183e3b" font-size="12" font-family="Arial,sans-serif">revise if needed</text>
+</svg>

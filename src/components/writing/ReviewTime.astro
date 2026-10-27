@@ -1,0 +1,74 @@
+<figure class="review-example" aria-labelledby="review-heading">
+  <div class="diagram-label">
+    <span class="annotation-dot" aria-hidden="true"></span> A small worked
+    example
+  </div>
+  <h3 id="review-heading">The draft is only one part of the task.</h3>
+  <p class="example-intro">
+    Compare an 8-minute manual task with a 1-minute AI draft plus human review.
+    Change the review time to see where the advantage disappears.
+  </p>
+  <div class="comparison-bars" aria-hidden="true">
+    <div class="comparison-row">
+      <span>Manual</span>
+      <div class="bar-track">
+        <div class="comparison-bar manual-bar"></div>
+      </div>
+      <span>8 min</span>
+    </div>
+    <div class="comparison-row">
+      <span>AI + review</span>
+      <div class="bar-track">
+        <div class="comparison-bar assisted-bar" id="assisted-bar"></div>
+      </div>
+      <span id="assisted-label">5 min</span>
+    </div>
+  </div>
+  <p class="comparison-result" id="review-result" role="status">
+    1 minute to draft + 4 minutes to review = 5 minutes per task. That is 3
+    minutes less than the manual example.
+  </p>
+  <div class="review-controls" hidden>
+    <label for="review-minutes">
+      Human review time{' '}
+      <output for="review-minutes" id="review-value">
+        4 minutes
+      </output>
+    </label>
+    <input
+      type="range"
+      id="review-minutes"
+      min="1"
+      max="12"
+      step="1"
+      value="4"
+    />
+    <div class="range-endpoints" aria-hidden="true">
+      <span>1 minute</span>
+      <span>12 minutes</span>
+    </div>
+  </div>
+  <figcaption>
+    Illustrative assumptions, not benchmark data. One draft and one review per
+    task; excludes retries, setup and downstream effects. The accepted result is
+    assumed equivalent in both routes.
+  </figcaption>
+</figure>
+<script>
+  const input = document.querySelector<HTMLInputElement>('#review-minutes');
+  if (input) {
+    document.querySelector<HTMLElement>('.review-controls')!.hidden = false;
+    input.addEventListener('input', () => {
+      const review = Number(input.value);
+      const total = review + 1;
+      const difference = Math.abs(8 - total);
+      document.querySelector('#review-value')!.textContent =
+        `${review} ${review === 1 ? 'minute' : 'minutes'}`;
+      document.querySelector('#assisted-label')!.textContent = `${total} min`;
+      document.querySelector<HTMLElement>('#assisted-bar')!.style.width =
+        `${(total / 16) * 100}%`;
+      document.querySelector('#review-result')!.textContent =
+        `1 minute to draft + ${review} ${review === 1 ? 'minute' : 'minutes'} to review = ${total} minutes per task. ${total === 8 ? 'That matches the manual example.' : `That is ${difference} ${difference === 1 ? 'minute' : 'minutes'} ${total < 8 ? 'less' : 'more'} than the manual example.`}`;
+    });
+  }
+</script>

@@ -11,15 +11,8 @@ const posts = await getPosts();
 >
   <section class="shell page-intro">
     <span class="eyebrow">Connected thinking</span>
-    <h1>
-      Three lenses.
-      <br />
-      <em>One conversation.</em>
-    </h1>
-    <p>
-      The questions rarely stay in one discipline. Start wherever your curiosity
-      takes you.
-    </p>
+    <h1>Topics.</h1>
+    <p>Three connected subjects. Follow a thread through the writing.</p>
   </section>
   <section class="shell topic-directory">
     {topics.map((t) => (
@@ -32,7 +25,10 @@ const posts = await getPosts();
           <p>{t.description}</p>
         </div>
         <span class="topic-count">
-          {posts.filter((p) => p.data.topic === t.id).length} sample article
+          {posts.filter((p) => p.data.topic === t.id).length}{' '}
+          {posts.filter((p) => p.data.topic === t.id).length === 1
+            ? 'piece'
+            : 'pieces'}
         </span>
       </a>
     ))}

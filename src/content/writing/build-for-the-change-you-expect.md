@@ -5,6 +5,9 @@ publishedAt: 2026-10-25T09:00:00+02:00
 topic: technology
 type: Field note
 sample: true
+reflection:
+  label: 'What I’m testing next'
+  text: 'For the next design decision, write down the kind of change it is supposed to make easier. If that sentence is vague, try the simpler design first.'
 ---
 
 Every system makes some changes straightforward and others inconvenient. A useful architecture conversation starts by naming the changes we actually expect.

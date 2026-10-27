@@ -8,18 +8,14 @@ const posts = await getPosts();
 
 <MainLayout
   title="Writing"
-  description="Essays, field notes and experiments about strategy, technology and AI."
+  description="Essays, short notes and visual stories about strategy, technology and AI."
 >
   <section class="shell page-intro">
     <span class="eyebrow">The journal</span>
-    <h1>
-      Ideas worth
-      <br />
-      <em>thinking through.</em>
-    </h1>
+    <h1>Writing.</h1>
     <p>
-      Essays, field notes and experiments. A record of questions explored and
-      assumptions revisited.
+      Essays, short notes and occasional visual stories. Start with a question
+      that interests you.
     </p>
   </section>
   <section class="shell archive-section">
@@ -57,8 +53,8 @@ const posts = await getPosts();
     </p>
     <p class="search-status sr-only" aria-live="polite" id="search-status"></p>
     <div class="archive-list">
-      {posts.map((p, i) => (
-        <PostRow post={p} number={i + 1} />
+      {posts.map((p) => (
+        <PostRow post={p} />
       ))}
     </div>
     <p id="no-results" hidden>

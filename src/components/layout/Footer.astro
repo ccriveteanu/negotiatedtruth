@@ -1,32 +1,19 @@
 ---
-import Logo from '../brand/Logo.astro';
 import { href } from '../../lib/content';
 import { siteConfig } from '../../data/site';
 ---
 
-<footer class="site-footer">
-  <div class="shell footer-main">
-    <div>
-      <a class="brand" href={href()} aria-label="NegotiatedTruth home">
-        <Logo />
-      </a>
-      <p>
-        Ideas are a starting point.
-        <br />
-        Understanding takes work.
-      </p>
-    </div>
-    <div class="footer-links">
-      <a href={href('writing/')}>Explore the writing ↗</a>
-      <a href={href('rss.xml')}>Follow via RSS ↗</a>
-      <a href={href('about/')}>About this journal ↗</a>
-    </div>
-  </div>
-  <div class="shell footer-bottom">
+<footer class="site-footer shell">
+  <div class="footer-author">
     <span>
       © {new Date().getFullYear()} {siteConfig.author}
     </span>
-    <span>A personal journal. An open conversation.</span>
-    <a href={href('privacy/')}>Privacy</a>
+    <span>Strategy, technology & AI.</span>
   </div>
+  <nav aria-label="Footer">
+    <a href={href('about/')}>About</a>
+    <a href={href('rss.xml')}>RSS ↗</a>
+    <a href={siteConfig.github}>GitHub ↗</a>
+    <a href={href('privacy/')}>Privacy</a>
+  </nav>
 </footer>
