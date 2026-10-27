@@ -27,6 +27,17 @@ for (const file of htmlFiles) {
     ),
     `Old template branding/content: ${file}`,
   );
+  assert(
+    html.includes('data-appearance-select') &&
+      html.includes('value="dark"') &&
+      html.includes('value="light"'),
+    `Appearance options missing: ${file}`,
+  );
+  const initializer = html.indexOf('negotiatedtruth:appearance');
+  assert(
+    initializer > 0 && initializer < html.indexOf('<body'),
+    `Appearance initializer must run before page content: ${file}`,
+  );
   assert(html.includes('lang="en"'), `Missing language: ${file}`);
   assert(html.includes('rel="canonical"'), `Missing canonical: ${file}`);
   assert(html.includes('Skip to content'), `Missing skip link: ${file}`);

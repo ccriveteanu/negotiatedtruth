@@ -7,7 +7,7 @@ A personal journal about strategy, technology and AI. Built with Astro and Markd
 Use the Node version in `.nvmrc`, then `npm ci`.
 
 - `npm run dev -- --background` starts the local preview. Use `npm exec astro -- dev status`, `npm exec astro -- dev logs`, and `npm exec astro -- dev stop` to manage it.
-- `npm run verify` checks types, builds the site, and validates internal links, assets, publication filtering, sample exclusions and structured data.
+- `npm run verify` checks types, tests appearance behavior and contrast, builds the site, and validates internal links, assets, publication filtering, sample exclusions and structured data.
 - `npm run build` creates `dist/`; `npm run preview` serves that production build.
 
 ## Write an article
@@ -67,6 +67,12 @@ Roll back by reverting the offending commit on `main` or redeploying a known-goo
 
 ## Identity and assets
 
-The geometric symbol is extracted from the supplied vector logo. The old wordmark is replaced with NegotiatedTruth. The site uses an independent ink-green, lime and near-white design system with locally served Geist and a system serif reading font. `public/brand/mark.svg` is the symbol; `public/brand/negotiatedtruth.svg` is a portable lockup; `social.png` is a social preview image. Master brand files stay outside the public website.
+The geometric symbol is extracted from the supplied vector logo. The old wordmark is replaced with NegotiatedTruth. The site uses an independent Dutch editorial design system with orange, charcoal and warm paper, plus small evergreen details with locally served Geist and a system serif reading font. `public/brand/mark.svg` is the symbol; `public/brand/negotiatedtruth.svg` is a portable lockup; `social.png` is a social preview image. Master brand files stay outside the public website.
 
-No analytics, cookies, remote fonts, accounts or external form service are used. Archive search filters the loaded titles and summaries in the browser.
+## Appearance
+
+The header offers System, Light and Dark. System is the default and follows operating-system changes live. A choice is stored under `negotiatedtruth:appearance` in browser-local storage, synchronized across open tabs and applied in the document head before paint. If storage is unavailable, the control still works on the current page. Invalid stored values fall back to System.
+
+Without JavaScript, CSS follows the device preference and the inactive selector is hidden. The palette also covers embedded SVG diagrams and code highlighting. Print output uses the light palette. The social preview image uses the light brand treatment.
+
+No analytics, cookies, remote fonts, accounts or external form service are used. The only browser storage is the appearance preference. Archive search filters the loaded titles and summaries in the browser.

@@ -23,5 +23,10 @@ export default defineConfig({
       filter: (url) => !sampleIds.some((id) => url.endsWith(`/writing/${id}/`)),
     }),
   ],
-  markdown: { shikiConfig: { theme: 'github-light' } },
+  markdown: {
+    shikiConfig: {
+      themes: { light: 'github-light', dark: 'github-dark' },
+      defaultColor: false,
+    },
+  },
 });

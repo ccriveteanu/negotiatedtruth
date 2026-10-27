@@ -1,5 +1,6 @@
 ---
 import Logo from '../brand/Logo.astro';
+import AppearanceControl from '../appearance/AppearanceControl.astro';
 import { href } from '../../lib/content';
 const path = Astro.url.pathname;
 const links = [
@@ -13,18 +14,21 @@ const links = [
     <a class="brand" href={href()} aria-label="NegotiatedTruth home">
       <Logo />
     </a>
-    <nav aria-label="Main navigation">
-      {links.map((link) => (
-        <a
-          href={href(link.path)}
-          aria-current={path.startsWith(href(link.path)) ? 'page' : undefined}
-        >
-          {link.label}
+    <div class="header-tools">
+      <nav aria-label="Main navigation">
+        {links.map((link) => (
+          <a
+            href={href(link.path)}
+            aria-current={path.startsWith(href(link.path)) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href={href('rss.xml')} class="rss-link" aria-label="Follow via RSS">
+          RSS <span aria-hidden="true">↗</span>
         </a>
-      ))}
-      <a href={href('rss.xml')} class="rss-link" aria-label="Follow via RSS">
-        RSS <span aria-hidden="true">↗</span>
-      </a>
-    </nav>
+      </nav>
+      <AppearanceControl />
+    </div>
   </div>
 </header>
