@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480" fill="none">
+<style>
+:root{--diagram-paper:#efede5;--diagram-ink:#242522;--diagram-card:#f7f5ef;--diagram-accent:#f36a1d;--diagram-secondary:#264536}
+path[stroke-dasharray]{stroke:var(--diagram-secondary)}
+@media(prefers-color-scheme:dark){:root{--diagram-paper:#20231f;--diagram-ink:#eeece5;--diagram-card:#2a2d26;--diagram-accent:#7b3a1c;--diagram-secondary:#a5c6a9}}
+</style>
+  <rect width="1000" height="480" fill="var(--diagram-paper)"/>
+  <g font-family="Arial,sans-serif" fill="var(--diagram-ink)"><text x="55" y="58" font-size="12" letter-spacing="2">GIVE THE REVIEW A JOB</text><text x="55" y="428" font-size="13">Review is a decision with criteria, not a reassuring pause before delivery.</text></g>
+  <path d="M55 145H270V322H55V235Z" fill="var(--diagram-card)" stroke="var(--diagram-ink)" stroke-width="2"/><text x="86" y="245" fill="var(--diagram-ink)" font-family="Arial,sans-serif" font-size="28">Draft</text>
+  <path d="M270 235H385M710 175H805M710 295H805" stroke="var(--diagram-ink)" stroke-width="2"/><path d="m377 229 8 6-8 6m412-72 8 6-8 6m-8 108 8 6-8 6" stroke="var(--diagram-ink)" stroke-width="2"/>
+  <path d="M420 123H710V345H385V225Z" fill="var(--diagram-accent)" stroke="var(--diagram-ink)" stroke-width="2"/>
+  <g fill="var(--diagram-ink)" font-family="Arial,sans-serif"><text x="430" y="170" font-size="12" letter-spacing="1">ACCEPTANCE CHECK</text><text x="430" y="218" font-size="21">Grounded in the source?</text><text x="430" y="257" font-size="21">Nothing essential lost?</text><text x="430" y="296" font-size="21">Usable for the next step?</text></g>
+  <circle cx="862" cy="175" r="53" fill="var(--diagram-ink)"/><text x="862" y="182" text-anchor="middle" fill="var(--diagram-card)" font-size="21" font-family="Arial,sans-serif">Accept</text><circle cx="862" cy="295" r="53" fill="var(--diagram-card)" stroke="var(--diagram-ink)" stroke-width="2"/><text x="862" y="302" text-anchor="middle" fill="var(--diagram-ink)" font-size="21" font-family="Arial,sans-serif">Revise</text>
+</svg>

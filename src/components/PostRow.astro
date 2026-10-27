@@ -1,0 +1,71 @@
+---
+import { href, formatDate, readingTime, type Post } from '../lib/content';
+import { topics } from '../data/site';
+interface Props {
+  post: Post;
+  number?: number;
+}
+const { post } = Astro.props;
+const topic = topics.find((t) => t.id === post.data.topic)!;
+const visual = post.data.type === 'Visual essay';
+const note = post.data.type === 'Field note';
+---
+
+<article
+  class:list={[
+    'post-row',
+    { 'post-row--note': note, 'post-row--visual': visual },
+  ]}
+  data-post
+  data-title={`${post.data.title} ${post.data.description} ${topic.name} ${post.data.type}`.toLowerCase()}
+>
+  <div class="post-row-body">
+    <div class="entry-meta">
+      <span class:list={['format-label', { 'format-label--note': note }]}>
+        {post.data.type}
+      </span>
+      <span class="meta-divider">/</span>
+      <time datetime={post.data.publishedAt.toISOString()}>
+        {formatDate(post.data.publishedAt)}
+      </time>
+      {post.data.sample && <span class="sample-tag">Sample</span>}
+    </div>
+    <h2>
+      <a href={href(`writing/${post.id}/`)}>{post.data.title}</a>
+    </h2>
+    <p>{post.data.description}</p>
+    <div class="post-row-end">
+      <a class="topic-link" href={href(`topics/${topic.id}/`)}>
+        {topic.name}
+      </a>
+      <a
+        class="continue-link"
+        href={href(`writing/${post.id}/`)}
+        aria-label={`Read ${post.data.title}`}
+      >
+        {visual
+          ? 'Explore the story'
+          : note
+            ? 'Read the note'
+            : 'Read the essay'}{' '}
+        <span aria-hidden="true">↗</span>
+      </a>
+      <span class="read-time">{readingTime(post)} min</span>
+    </div>
+  </div>
+  {visual && post.data.cover && (
+    <a
+      class="story-thumbnail"
+      href={href(`writing/${post.id}/`)}
+      aria-label={`Open visual essay: ${post.data.title}`}
+    >
+      <img
+        src={post.data.cover.src}
+        alt={post.data.coverAlt || ''}
+        width={post.data.cover.width}
+        height={post.data.cover.height}
+        loading="lazy"
+      />
+    </a>
+  )}
+</article>

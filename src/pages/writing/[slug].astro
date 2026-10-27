@@ -1,0 +1,158 @@
+---
+import { render } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import SampleNotice from '../../components/writing/SampleNotice.astro';
+import Reflection from '../../components/writing/Reflection.astro';
+import ReviewTime from '../../components/writing/ReviewTime.astro';
+import {
+  getPosts,
+  href,
+  formatDate,
+  readingTime,
+  type Post,
+} from '../../lib/content';
+import { topics, siteConfig } from '../../data/site';
+export async function getStaticPaths() {
+  return (await getPosts()).map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const topic = topics.find((t) => t.id === post.data.topic)!;
+const chapters = headings.filter((h) => h.depth === 2);
+const visual = post.data.type === 'Visual essay';
+const showContents =
+  chapters.length > 0 &&
+  (visual ||
+    (post.data.contents ??
+      ((post.body || '').split(/\s+/).length >= 1400 && chapters.length >= 4)));
+const related = (await getPosts()).filter((p) => p.id !== post.id).slice(0, 2);
+---
+
+<MainLayout
+  title={post.data.title}
+  description={post.data.description}
+  noindex={post.data.sample}
+  article={
+    post.data.sample
+      ? undefined
+      : {
+          published: post.data.publishedAt.toISOString(),
+          updated: post.data.updatedAt?.toISOString(),
+        }
+  }
+>
+  <article class:list={['article-page', { 'article-page--visual': visual }]}>
+    <header class:list={['article-header', { 'visual-cover': visual }]}>
+      <a class="back-link" href={href('writing/')}>
+        ← Writing
+      </a>
+      <div class="entry-meta">
+        <a class="topic-link" href={href(`topics/${topic.id}/`)}>
+          {topic.name}
+        </a>
+        <span class="meta-divider">/</span>
+        <span>{post.data.type}</span>
+      </div>
+      <h1>{post.data.title}</h1>
+      {visual && <p class="standfirst">{post.data.description}</p>}
+      <div class="article-byline">
+        <span>{post.data.sample ? 'Sample writing' : siteConfig.author}</span>
+        <time datetime={post.data.publishedAt.toISOString()}>
+          {formatDate(post.data.publishedAt)}
+        </time>
+        <span>{readingTime(post)} min read</span>
+      </div>
+      {post.data.updatedAt && (
+        <p class="updated">Updated {formatDate(post.data.updatedAt)}</p>
+      )}
+      {post.data.sample && <SampleNotice />}
+    </header>
+    {visual && post.data.cover && (
+      <figure class="story-cover-art">
+        <picture>
+          {post.data.coverMobile && (
+            <source
+              media="(max-width: 700px)"
+              srcset={post.data.coverMobile.src}
+              width={post.data.coverMobile.width}
+              height={post.data.coverMobile.height}
+            />
+          )}
+          <img
+            src={post.data.cover.src}
+            alt={post.data.coverAlt || ''}
+            width={post.data.cover.width}
+            height={post.data.cover.height}
+          />
+        </picture>
+        <figcaption>
+          A visual essay · Follow the work, not just the output.
+        </figcaption>
+      </figure>
+    )}
+    {showContents && (
+      <nav class="chapter-nav" aria-label="In this article">
+        <span class="eyebrow">{visual ? 'The story' : 'On this page'}</span>
+        <ol>
+          {chapters.map((h, i) => (
+            <li>
+              <a href={`#${h.slug}`}>
+                <span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+        {post.data.visualTool && (
+          <a class="tool-jump" href="#worked-example">
+            Try the worked example ↓
+          </a>
+        )}
+      </nav>
+    )}
+    <div class:list={['prose article-prose', { 'visual-prose': visual }]}>
+      <Content />
+    </div>
+    {post.data.visualTool === 'review-time' && (
+      <section
+        class="worked-example"
+        id="worked-example"
+        aria-label="Interactive worked example"
+      >
+        <ReviewTime />
+      </section>
+    )}
+    {post.data.reflection && (
+      <div class="article-reflection">
+        <Reflection {...post.data.reflection} />
+      </div>
+    )}
+    <footer class="article-end">
+      <span class="end-mark" aria-hidden="true">
+        ●
+      </span>
+      <a href={href('rss.xml')}>Follow new writing via RSS ↗</a>
+    </footer>
+  </article>
+  {related.length > 0 && (
+    <section class="next-reading shell" aria-labelledby="next-reading-heading">
+      <h2 id="next-reading-heading">Another thread to follow</h2>
+      <ul>
+        {related.map((p) => (
+          <li>
+            <span>{p.data.type}</span>
+            <a href={href(`writing/${p.id}/`)}>
+              {p.data.title} <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</MainLayout>

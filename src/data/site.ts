@@ -1,86 +1,38 @@
-// Site configuration and content
 export const siteConfig = {
-  title: "Negotiated Truth",
-  description: "A production-quality public website built with Astro",
-  url: "https://negotiatedtruth.github.io",
-  base: "/",
-
-  // Enable/disable dark mode
-  darkMode: true,
-
-  navLinks: [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Work", href: "#work" },
-    { label: "Contact", href: "#contact" },
-  ],
-
-  hero: {
-    title: "Clarity Through Conversation",
-    subtitle: "We help organizations find common ground through strategic communication and negotiation.",
-    ctaText: "Get Started",
-    ctaLink: "#contact",
-  },
-
-  features: [
-    {
-      title: "Strategic Negotiation",
-      description: "Expert guidance through complex negotiations to reach mutually beneficial outcomes.",
-      icon: "⚖️",
-    },
-    {
-      title: "Conflict Resolution",
-      description: "Mediation services that de-escalate tensions and rebuild working relationships.",
-      icon: "🤝",
-    },
-    {
-      title: "Communication Strategy",
-      description: "Clear, compelling messaging that resonates with your target audience.",
-      icon: "📢",
-    },
-  ],
-
-  work: [
-    {
-      title: "Corporate Merger",
-      category: "Business",
-      description: "Facilitated negotiations between two Fortune 500 companies.",
-    },
-    {
-      title: "Community Mediation",
-      category: "Public",
-      description: "Resolved long-standing disputes between neighborhood groups.",
-    },
-    {
-      title: "Labor Relations",
-      category: "Human Resources",
-      description: "Negotiated collective bargaining agreement for major industry.",
-    },
-  ],
-
-  about: {
-    headline: "About Us",
-    text: "Founded on the belief that every conflict holds the seed of opportunity, we combine journalistic rigor with diplomatic finesse. Our team brings years of experience in negotiation, communication strategy, and conflict resolution to help organizations and individuals find common ground.",
-    stats: [
-      { number: "100+", label: "Projects Completed" },
-      { number: "25+", label: "Years Experience" },
-      { number: "98%", label: "Client Satisfaction" },
-    ],
-  },
-
-  contact: {
-    cta: "Ready to find your negotiated truth?",
-    email: "contact@negotiatedtruth.example",
-    phone: "+1 (555) 000-0000",
-  },
-
-  footer: {
-    copyright: "© {year} Negotiated Truth. All rights reserved.",
-    socialLinks: [
-      { label: "LinkedIn", href: "#" },
-      { label: "Email", href: "mailto:contact@negotiatedtruth.example" },
-    ],
-  },
+  title: 'NegotiatedTruth',
+  description:
+    'A personal journal by Cătălin Criveteanu. Essays, notes and visual stories about strategy, technology and AI.',
+  author: 'Cătălin Criveteanu',
+  github: 'https://github.com/ccriveteanu',
 };
-
-export type SiteConfig = typeof siteConfig;
+export const topics = [
+  {
+    id: 'strategy',
+    name: 'Strategy',
+    question: 'Which trade-offs are we actually making?',
+    editorialFocus:
+      'Problem framing, priorities and the capabilities behind a plan. How do we decide what to pursue, what to leave out and when to reconsider?',
+    number: '01',
+    description:
+      'Choices, trade-offs and the work of turning intent into action.',
+  },
+  {
+    id: 'technology',
+    name: 'Technology',
+    question: 'What should be easy to change?',
+    editorialFocus:
+      'Architecture, delivery and the systems behind the software. The interesting choices often concern what a design makes easier today and what it asks us to carry tomorrow.',
+    number: '02',
+    description: 'Systems, software and the decisions behind what we build.',
+  },
+  {
+    id: 'ai',
+    name: 'AI',
+    question: 'What makes an AI system useful?',
+    editorialFocus:
+      'Evaluation, adoption and the complete route from a generated answer to accepted work. What do we measure, where does the effort move and which assumptions need testing?',
+    number: '03',
+    description:
+      'Useful intelligence, honest evaluation and room for uncertainty.',
+  },
+] as const;

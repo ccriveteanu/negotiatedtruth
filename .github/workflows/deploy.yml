@@ -1,55 +1,39 @@
-# GitHub Pages deployment workflow
-name: Deploy to GitHub Pages
-
+name: Check and deploy blog
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  pull_request:
   workflow_dispatch:
-
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
 concurrency:
-  group: pages-deploy
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      # Use Node.js 22 (LTS)
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version-file: .nvmrc
           cache: npm
-      
-      # Install dependencies
-      - name: Install dependencies
-        run: npm ci
-      
-      # Build the Astro project for production
-      - name: Build with Astro
-        run: |
-          npm run build -- --base /negotiatedtruth/
-          
-      # Upload the built artifacts to GitHub Pages
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - run: npm ci
+      - run: npm run verify
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
-          path: ./dist
-      
+          path: dist
   deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
-    
     runs-on: ubuntu-latest
-    
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

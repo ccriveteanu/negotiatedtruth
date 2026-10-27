@@ -1,23 +1,116 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import FeaturedWork from '../components/FeaturedWork.astro';
-import About from '../components/About.astro';
-import Contact from '../components/Contact.astro';
-
-const title = "Negotiated Truth | Finding common ground through conversation";
-const description = "A production-quality public website built with Astro for GitHub Pages.";
+import PostRow from '../components/PostRow.astro';
+import { getPosts, href, formatDate, openingParagraphs } from '../lib/content';
+import { siteConfig, topics } from '../data/site';
+const posts = await getPosts();
+const [latest, ...rest] = posts;
+const startingPoints = posts.filter((post) => post.data.startHere).slice(0, 3);
 ---
 
-<MainLayout 
-  title={title} 
-  description={description}
-  header={{ hidden: false }}
->
-  <Hero />
-  <Features />
-  <FeaturedWork />
-  <About />
-  <Contact />
+<MainLayout>
+  <div class="shell home-journal">
+    <section
+      class="personal-intro home-positioning"
+      aria-label="About the journal"
+    >
+      <span class="eyebrow">NegotiatedTruth / A personal journal</span>
+      <h1>Strategy, technology & AI.</h1>
+      <p>
+        How do we choose what to build—and know whether it worked? Notes on
+        decisions, software and the practical consequences of AI.
+      </p>
+      <a class="intro-author" href={href('about/')}>
+        By {siteConfig.author} <span aria-hidden="true">↗</span>
+      </a>
+    </section>
+    <nav class="question-index" aria-label="Explore by question">
+      {topics.map((topic) => (
+        <a href={href(`topics/${topic.id}/`)}>
+          <span class="eyebrow">{topic.name}</span>
+          <span class="question-title">{topic.question}</span>
+          <span class="question-context">{topic.description}</span>
+          <span class="question-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      ))}
+    </nav>
+    {latest && (
+      <article class="lead-entry">
+        <div class="entry-meta">
+          <span class="latest-label">Latest writing</span>
+          <time datetime={latest.data.publishedAt.toISOString()}>
+            {formatDate(latest.data.publishedAt)}
+          </time>
+          <span class="meta-divider">/</span>
+          <span>{latest.data.type}</span>
+          {latest.data.sample && <span class="sample-tag">Sample writing</span>}
+        </div>
+        <h2>
+          <a href={href(`writing/${latest.id}/`)}>{latest.data.title}</a>
+        </h2>
+        <div class="lead-opening">
+          {openingParagraphs(latest).map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+        <a class="continue-link" href={href(`writing/${latest.id}/`)}>
+          Continue reading <span aria-hidden="true">↗</span>
+          <span class="sr-only">: {latest.data.title}</span>
+        </a>
+      </article>
+    )}
+    {startingPoints.length > 0 && (
+      <section class="starting-points" aria-labelledby="starting-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="starting-heading">Start here</h2>
+            <p>A few ways into the questions behind this journal.</p>
+          </div>
+          <a href={href('writing/')}>Browse all writing ↗</a>
+        </div>
+        <div class="starting-grid">
+          {startingPoints.map((post) => (
+            <article>
+              <span class="eyebrow">{post.data.startHere!.question}</span>
+              <h3>
+                <a href={href(`writing/${post.id}/`)}>
+                  {post.data.title} <span aria-hidden="true">↗</span>
+                </a>
+              </h3>
+              <p>{post.data.startHere!.reason}</p>
+              {post.data.sample && <span class="sample-tag">Sample</span>}
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+    <section class="recent-writing" aria-labelledby="recent-heading">
+      <div class="section-heading">
+        <h2 id="recent-heading">From the journal</h2>
+        <a href={href('writing/')}>All writing ↗</a>
+      </div>
+      {rest.map((post) => (
+        <PostRow post={post} />
+      ))}
+      {rest.length === 0 && <p class="muted">More writing is on the way.</p>}
+    </section>
+    <section class="journal-purpose" aria-labelledby="purpose-heading">
+      <div>
+        <span class="eyebrow">Why NegotiatedTruth?</span>
+        <h2 id="purpose-heading">A point of view, with room to change.</h2>
+        <p>
+          Useful decisions bring different perspectives into the same
+          conversation. This journal makes space for the trade-offs: between
+          ambition and constraints, a promising idea and the work of making it
+          useful.
+        </p>
+      </div>
+      <div class="purpose-links">
+        <a href={href('about/')}>About the journal ↗</a>
+        <a href={href('rss.xml')}>Follow at your own pace via RSS ↗</a>
+      </div>
+    </section>
+  </div>
 </MainLayout>

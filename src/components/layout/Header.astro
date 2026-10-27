@@ -1,149 +1,34 @@
 ---
-import LightModeSwitch from './LightModeSwitch.astro';
-import { siteConfig } from '../../data/site';
-
-interface Props {
-  fixed?: boolean;
-  isHome?: boolean;
-}
-
-const { fixed, isHome } = Astro.props as Props;
-
-const isFixed = !!fixed;
+import Logo from '../brand/Logo.astro';
+import AppearanceControl from '../appearance/AppearanceControl.astro';
+import { href } from '../../lib/content';
+const path = Astro.url.pathname;
+const links = [
+  { label: 'Writing', path: 'writing/' },
+  { label: 'About', path: 'about/' },
+];
 ---
 
-{/* Fixed banner header */}
-{isFixed && (
-  <header id="header" role="banner" class="text-text dark:text-text-dark relative z-50 w-full bg-white shadow-lg dark:bg-stone-900">
-    <div class="container mx-auto px-4 py-4">
-      <div class="flex items-center justify-between">
-        <a href="/" aria-label="{siteConfig.title} Home" class="text-2xl font-bold tracking-tight text-text dark:text-text-dark">
-          {siteConfig.title}
-        </a>
-
-        {/* Desktop Nav */}
-        <nav class="hidden md:flex items-center gap-8">
-          {[
-            { label: 'About', href: '#about' },
-            { label: 'Services', href: '#services' },
-            { label: 'Work', href: '#work' },
-            { label: 'Contact', href: '#contact' },
-          ].map(link => (
-            <a
-              href={link.href}
-              class="text-sm font-medium text-text dark:text-text-dark hover:text-secondary no-underline transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <button class="md:hidden text-text dark:text-text-dark hover:text-secondary p-2" aria-label="Toggle menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
-          </svg>
-        </button>
-
-        {/* Right side: Theme switch */}
-        <div class="flex items-center gap-4">
-          {siteConfig.darkMode && <LightModeSwitch />}
-        </div>
-      </div>
-    </div>
-  </header>
-)}
-
-{/* CSS-fixed header: stays at top while scrolling */}
-{!isFixed && (
-  <>
-    <div id="header-placeholder" class="h-20"></div>
-    <header id="header" role="banner" class="header-base-style fixed left-0 z-50 top-0">
-      <div class="container mx-auto px-4 py-4">
-        <div class="flex items-center justify-between">
-          <a href="/" aria-label="{siteConfig.title} Home" class="text-2xl font-bold tracking-tight text-text dark:text-text-dark">
-            {siteConfig.title}
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href={href()} aria-label="NegotiatedTruth home">
+      <Logo />
+    </a>
+    <div class="header-tools">
+      <nav aria-label="Main navigation">
+        {links.map((link) => (
+          <a
+            href={href(link.path)}
+            aria-current={path.startsWith(href(link.path)) ? 'page' : undefined}
+          >
+            {link.label}
           </a>
-
-          {/* Desktop Nav */}
-          <nav class="hidden md:flex items-center gap-8">
-            {[
-              { label: 'About', href: '#about' },
-              { label: 'Services', href: '#services' },
-              { label: 'Work', href: '#work' },
-              { label: 'Contact', href: '#contact' },
-            ].map(link => (
-              <a
-                href={link.href}
-                class="text-sm font-medium text-text dark:text-text-dark hover:text-secondary no-underline transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button class="md:hidden text-text dark:text-text-dark hover:text-secondary p-2" aria-label="Toggle menu">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
-            </svg>
-          </button>
-
-          {/* Right side: Theme switch */}
-          <div class="flex items-center gap-4">
-            {siteConfig.darkMode && <LightModeSwitch />}
-          </div>
-        </div>
-      </div>
-    </header>
-  </>
-)}
-
-<style>
-  #header-placeholder {
-    height: 80px;
-  }
-</style>
-
-<script>
-  // Keep scroll-padding-top in sync with the floating header height
-  let _hashOffsetRaf = 0;
-
-  function updateHashScrollOffset() {
-    const root = document.documentElement;
-    const header = document.getElementById('header');
-    if (!header) {
-      root.style.scrollPaddingTop = '';
-      return;
-    }
-    const cs = window.getComputedStyle(header);
-    const isFloating = cs.position === 'fixed';
-    root.style.scrollPaddingTop = isFloating ? header.offsetHeight + 'px' : '';
-  }
-
-  function scheduleHashScrollOffset() {
-    if (_hashOffsetRaf) return;
-    _hashOffsetRaf = window.requestAnimationFrame(() => {
-      _hashOffsetRaf = 0;
-      updateHashScrollOffset();
-    });
-  }
-
-  function setupHashScrollOffset() {
-    const header = document.getElementById('header');
-    if (!header) return;
-
-    updateHashScrollOffset();
-
-    const onScroll = () => scheduleHashScrollOffset();
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    const onResize = () => scheduleHashScrollOffset();
-    window.addEventListener('resize', onResize);
-
-    // Update on page load/switch
-    document.addEventListener('astro:page-load', setupHashScrollOffset);
-  }
-
-  setupHashScrollOffset();
-</script>
+        ))}
+        <a href={href('rss.xml')} class="rss-link" aria-label="Follow via RSS">
+          RSS <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+      <AppearanceControl />
+    </div>
+  </div>
+</header>

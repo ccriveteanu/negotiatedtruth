@@ -1,0 +1,79 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PostRow from '../../components/PostRow.astro';
+import { getPosts, href } from '../../lib/content';
+import { topics } from '../../data/site';
+const posts = await getPosts();
+---
+
+<MainLayout
+  title="Writing"
+  description="Essays, short notes and visual stories about strategy, technology and AI."
+>
+  <section class="shell page-intro">
+    <span class="eyebrow">The journal</span>
+    <h1>Writing.</h1>
+    <p>
+      Essays, short notes and occasional visual stories. Start with a question
+      that interests you.
+    </p>
+  </section>
+  <section class="shell archive-section">
+    <div class="archive-controls">
+      <nav aria-label="Browse by topic">
+        <a href={href('writing/')} aria-current="page">
+          All writing
+        </a>
+        {topics.map((t) => (
+          <a href={href(`topics/${t.id}/`)}>{t.name}</a>
+        ))}
+      </nav>
+      <label class="search-label">
+        <span class="sr-only">Search article titles and summaries</span>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 20 20"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle cx="8" cy="8" r="5.5" stroke="currentColor" />
+          <path d="m12 12 5 5" stroke="currentColor" />
+        </svg>
+        <input
+          type="search"
+          id="writing-search"
+          placeholder="Find a thought…"
+        />
+      </label>
+    </div>
+    <p class="preview-note">
+      These sample articles demonstrate the first edition. Original writing is
+      coming next.
+    </p>
+    <p class="search-status sr-only" aria-live="polite" id="search-status"></p>
+    <div class="archive-list">
+      {posts.map((p) => (
+        <PostRow post={p} />
+      ))}
+    </div>
+    <p id="no-results" hidden>
+      No writing matches that search. Try another word or browse a topic.
+    </p>
+  </section>
+</MainLayout>
+<script>
+  const input = document.querySelector<HTMLInputElement>('#writing-search');
+  const rows = [...document.querySelectorAll<HTMLElement>('[data-post]')];
+  input?.addEventListener('input', () => {
+    const query = input.value.toLowerCase().trim();
+    let count = 0;
+    for (const row of rows) {
+      row.hidden = !row.dataset.title?.includes(query);
+      if (!row.hidden) count++;
+    }
+    document.querySelector<HTMLElement>('#no-results')!.hidden = count !== 0;
+    document.querySelector('#search-status')!.textContent =
+      `${count} ${count === 1 ? 'article' : 'articles'} found`;
+  });
+</script>

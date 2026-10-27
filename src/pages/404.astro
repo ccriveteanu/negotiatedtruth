@@ -1,29 +1,17 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-
-const title = "Page Not Found - Negotiated Truth";
+import { href } from '../lib/content';
 ---
 
-<MainLayout 
-  title={title} 
-  description="The page you are looking for does not exist."
->
-  <section class="min-h-screen flex items-center justify-center px-4 py-24">
-    <div class="container text-center max-w-lg">
-      <h1 class="text-9xl font-bold mb-8">404</h1>
-      <p class="text-2xl font-medium mb-6">Page Not Found</p>
-      <p class="text-gray-400 mb-12">
-        The page you are looking for doesn't exist or has been moved.
-      </p>
-      <a href="/" class="btn-primary inline-flex items-center justify-center px-8 py-4 text-lg rounded-xl">
-        Go Home
-      </a>
-    </div>
+<MainLayout title="Page not found" noindex>
+  <section class="shell page-intro not-found">
+    <span class="eyebrow">An unexpected turn / 404</span>
+    <h1>A missing page.</h1>
+    <p>
+      This page could not be found. There are still plenty of ideas to explore.
+    </p>
+    <a class="button" href={href('writing/')}>
+      Back to the writing ↗
+    </a>
   </section>
 </MainLayout>
-
-<style>
-.min-h-screen {
-  min-height: 100vh;
-}
-</style>

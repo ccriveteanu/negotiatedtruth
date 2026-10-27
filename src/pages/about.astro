@@ -1,0 +1,98 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { href } from '../lib/content';
+import { siteConfig, topics } from '../data/site';
+---
+
+<MainLayout
+  title="About"
+  description="The questions, subjects and working philosophy behind NegotiatedTruth, a personal journal by Cătălin Criveteanu."
+>
+  <section class="shell page-intro">
+    <span class="eyebrow">Behind the journal</span>
+    <h1>I'm Cătălin.</h1>
+    <p>
+      NegotiatedTruth is my personal journal about strategy, technology and AI:
+      how ideas become decisions, and what happens when those decisions meet the
+      work.
+    </p>
+  </section>
+  <div class="prose legal about-copy">
+    <p>
+      I’m interested in the gap between an appealing idea and something that
+      works. A good argument can make a choice feel obvious. The constraints,
+      the people involved and the consequences often make it more interesting.
+    </p>
+    <p>
+      This is a place to work through that complexity in public: to connect
+      ideas, examine assumptions and leave a record of what holds up when we try
+      it.
+    </p>
+    <h2>Why “NegotiatedTruth”?</h2>
+    <p>
+      A decision often sits between several reasonable perspectives. The
+      technical answer, the business priority and the human experience may each
+      reveal a different part of the problem.
+    </p>
+    <p>
+      The name is an invitation to bring those perspectives together. I want to
+      make the trade-offs visible, explain the reasoning and leave room to
+      revise a view when the evidence changes.
+    </p>
+    <h2>The questions I’m exploring</h2>
+    <div class="about-subjects">
+      {topics.map((topic) => (
+        <section>
+          <h3>
+            <a href={href(`topics/${topic.id}/`)}>{topic.name} ↗</a>
+          </h3>
+          <p class="subject-question">{topic.question}</p>
+          <p>{topic.editorialFocus}</p>
+        </section>
+      ))}
+    </div>
+    <h2>How I approach the writing</h2>
+    <p>
+      A point of view should be clear enough to challenge. The aim is to show
+      the reasoning behind a conclusion, distinguish evidence from
+      interpretation and be explicit about what remains uncertain.
+    </p>
+    <p>
+      Some pieces will follow an argument at length. Others will capture a small
+      observation or test an idea with a diagram and a worked example. The
+      format should help the question, and the question should lead somewhere
+      useful.
+    </p>
+    <h2>What you’ll find here</h2>
+    <ul class="format-descriptions">
+      <li>
+        <strong>Essays</strong> — an argument developed carefully, with room for
+        its limits and implications.
+      </li>
+      <li>
+        <strong>Field notes</strong> — a focused observation, a practical
+        question or something worth returning to.
+      </li>
+      <li>
+        <strong>Visual stories and experiments</strong> — a way to make a
+        system, relationship or trade-off easier to inspect.
+      </li>
+    </ul>
+    <p>
+      <a href={href('writing/')}>Explore the writing ↗</a>
+    </p>
+    <aside class="about-preview">
+      <h2>A journal in the making</h2>
+      <p>
+        The articles in this preview are clearly labelled sample writing. The
+        original articles and a fuller personal biography will replace the
+        provisional material before launch.
+      </p>
+    </aside>
+    <p class="about-elsewhere">
+      <a href={siteConfig.github}>Find me on GitHub ↗</a>
+      <br />
+      <a href={href('rss.xml')}>Follow new writing via RSS ↗</a>
+    </p>
+  </div>
+</MainLayout>
