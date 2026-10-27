@@ -5,6 +5,9 @@ publishedAt: 2026-10-24T09:00:00+02:00
 topic: ai
 type: Visual essay
 sample: true
+startHere:
+  question: 'Exploring AI at work?'
+  reason: 'Follow a task through drafting, review and acceptance, then try the assumptions yourself.'
 cover: ../../assets/illustrations/decision-path.svg
 coverMobile: ../../assets/illustrations/decision-path-mobile.svg
 coverAlt: 'A request becomes a draft, passes through review, and becomes accepted work. A revision loop connects review back to drafting.'

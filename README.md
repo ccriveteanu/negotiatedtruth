@@ -33,7 +33,7 @@ Four clearly labelled sample posts make the first design reviewable. They appear
 
 ## Editorial formats
 
-The home page leads with the newest article and takes its opening paragraphs directly from its Markdown. It then mixes compact field notes, plain essay entries and illustrated visual-essay entries in date order. No featured flag or dedicated promotional sidebar is used.
+The home page introduces the journal’s three subject areas with concrete questions, then presents the newest article with opening paragraphs taken directly from its Markdown. It then mixes compact field notes, plain essay entries and illustrated visual-essay entries in date order. Optional `startHere: { question, reason }` metadata curates a short reading list from published articles, and a closing journal introduction provides context. No dedicated promotional sidebar is used.
 
 Ordinary essays use a centred reading column. Contents navigation appears automatically at 1,400 words with at least four sections; `contents: true` or `false` overrides that choice. Markdown footnotes are supported. Optional closing reflections belong in the front matter:
 

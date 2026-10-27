@@ -5,6 +5,9 @@ publishedAt: 2026-10-26T09:00:00+02:00
 topic: strategy
 type: Essay
 sample: true
+startHere:
+  question: 'Making a decision?'
+  reason: 'Start by separating the choice you need to make from the comparison you are about to build.'
 reflection:
   label: 'What would change my mind?'
   text: 'A comparison that reveals a constraint we had not noticed. Sometimes the act of comparing options helps us discover the question. The useful test is whether the exercise changes the decision.'

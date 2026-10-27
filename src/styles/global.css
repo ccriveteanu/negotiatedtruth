@@ -244,7 +244,7 @@ p {
 .lead-entry h2 {
   font-family: 'Geist', Arial, sans-serif;
   font-weight: 500;
-  font-size: clamp(42px, 5.1vw, 61px);
+  font-size: clamp(32px, 3.8vw, 42px);
   line-height: 1.1;
   letter-spacing: -1.9px;
   margin: 22px 0 25px;
@@ -259,7 +259,7 @@ p {
 .lead-opening {
   max-width: 680px;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 20px;
+  font-size: 18px;
   color: var(--text);
 }
 .lead-opening p {
@@ -322,7 +322,7 @@ p {
 }
 .post-row h2 {
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.8px;
@@ -379,7 +379,7 @@ p {
 }
 .post-row--note h2 {
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 500;
   letter-spacing: -0.6px;
   margin-top: 10px;
@@ -409,7 +409,7 @@ p {
   border-color: var(--feature-line);
 }
 .post-row--visual h2 {
-  font-size: 34px;
+  font-size: 28px;
   margin-top: 19px;
 }
 .post-row--visual p {
@@ -469,7 +469,7 @@ p {
 }
 .page-intro h1 {
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 52px;
+  font-size: 36px;
   font-weight: 400;
   letter-spacing: -1.4px;
   line-height: 1.15;
@@ -564,12 +564,12 @@ p {
 }
 .topic-directory-row h2 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 400;
 }
 .topic-directory-row h2 > span {
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   margin-left: 10px;
 }
 .topic-directory-row p {
@@ -595,12 +595,12 @@ p {
 .article-prose,
 .article-reflection,
 .article-end {
-  max-width: 700px;
+  max-width: 660px;
   margin-inline: auto;
 }
 .article-header h1 {
   font-family: 'Geist', Arial, sans-serif;
-  font-size: clamp(37px, 4.4vw, 54px);
+  font-size: clamp(32px, 3.6vw, 42px);
   font-weight: 500;
   line-height: 1.12;
   letter-spacing: -1.3px;
@@ -641,8 +641,8 @@ p {
 }
 .prose {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 20px;
-  line-height: 1.85;
+  font-size: 18px;
+  line-height: 1.75;
   color: var(--text);
   min-width: 0;
 }
@@ -650,18 +650,18 @@ p {
   padding-top: 30px;
 }
 .prose p {
-  line-height: 1.85;
-  margin-bottom: 24px;
+  line-height: 1.75;
+  margin-bottom: 20px;
 }
 .prose h2,
 .prose h3 {
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 500;
   color: var(--ink);
   letter-spacing: -0.6px;
   line-height: 1.4;
-  margin: 43px 0 18px;
+  margin: 34px 0 16px;
   scroll-margin-top: 35px;
 }
 .prose h3 {
@@ -683,7 +683,7 @@ p {
   margin-bottom: 9px;
 }
 .prose blockquote {
-  font-size: 25px;
+  font-size: 22px;
   line-height: 1.6;
   color: var(--ink);
   border-left: 3px solid var(--ink);
@@ -841,7 +841,7 @@ p {
   margin-left: 8px;
 }
 .chapter-nav {
-  max-width: 700px;
+  max-width: 660px;
   margin: 25px auto 0;
   padding: 25px 0;
   border-block: 1px solid var(--line);
@@ -883,14 +883,14 @@ p {
 }
 .visual-cover h1 {
   font-family: 'Geist', Arial, sans-serif;
-  font-size: clamp(42px, 5.5vw, 70px);
+  font-size: clamp(36px, 4.6vw, 54px);
   letter-spacing: -2.4px;
   font-weight: 500;
   max-width: 850px;
   margin-block: 28px;
 }
 .standfirst {
-  max-width: 700px;
+  max-width: 660px;
   font-size: 18px;
   color: var(--text);
   line-height: 1.75;
@@ -925,13 +925,13 @@ p {
 .visual-prose > ul,
 .visual-prose > ol,
 .visual-prose > blockquote {
-  max-width: 700px;
+  max-width: 660px;
   margin-left: auto;
   margin-right: auto;
 }
 .visual-prose > h2 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 400;
   letter-spacing: -1px;
   margin-top: 65px;
@@ -1056,7 +1056,7 @@ p {
   margin-top: 20px;
 }
 .legal {
-  max-width: 700px;
+  max-width: 660px;
   width: calc(100% - 48px);
   margin: 0 auto;
   padding-block: 10px 65px;
@@ -1087,7 +1087,7 @@ p {
     gap: 20px;
   }
   .post-row--visual h2 {
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 @media (max-width: 700px) {
@@ -1126,12 +1126,12 @@ p {
     padding: 32px 0 38px;
   }
   .lead-entry h2 {
-    font-size: 42px;
+    font-size: 34px;
     letter-spacing: -1.3px;
     margin-top: 18px;
   }
   .lead-opening {
-    font-size: 19px;
+    font-size: 18px;
   }
   .recent-writing {
     margin-bottom: 40px;
@@ -1140,20 +1140,20 @@ p {
     padding-block: 27px;
   }
   .post-row h2 {
-    font-size: 30px;
+    font-size: 26px;
   }
   .post-row--note {
     padding-left: 22px;
   }
   .post-row--note h2 {
-    font-size: 23px;
+    font-size: 21px;
   }
   .post-row--visual {
     grid-template-columns: 1fr;
     padding: 25px;
   }
   .post-row--visual h2 {
-    font-size: 33px;
+    font-size: 28px;
   }
   .story-thumbnail {
     min-height: 0;
@@ -1176,7 +1176,7 @@ p {
     padding-block: 35px 25px;
   }
   .page-intro h1 {
-    font-size: 43px;
+    font-size: 34px;
     margin-block: 17px;
   }
   .page-intro > p {
@@ -1206,7 +1206,7 @@ p {
     padding-top: 28px;
   }
   .article-header h1 {
-    font-size: 39px;
+    font-size: 32px;
     letter-spacing: -1.1px;
     margin: 21px 0;
   }
@@ -1215,17 +1215,17 @@ p {
     gap: 8px 12px;
   }
   .prose {
-    font-size: 19px;
+    font-size: 18px;
   }
   .article-prose {
     padding-top: 25px;
   }
   .prose h2 {
-    font-size: 24px;
+    font-size: 21px;
     margin-top: 35px;
   }
   .prose blockquote {
-    font-size: 23px;
+    font-size: 21px;
     padding-left: 20px;
   }
   .prose table {
@@ -1259,7 +1259,7 @@ p {
     padding-top: 0;
   }
   .visual-cover h1 {
-    font-size: 43px;
+    font-size: 34px;
     letter-spacing: -1.6px;
   }
   .standfirst {
@@ -1270,7 +1270,7 @@ p {
     text-align: left;
   }
   .visual-prose > h2 {
-    font-size: 33px;
+    font-size: 28px;
     margin-top: 43px;
     padding-top: 25px;
   }
@@ -1282,7 +1282,7 @@ p {
     padding: 25px 21px;
   }
   .review-example h3 {
-    font-size: 24px;
+    font-size: 21px;
   }
   .comparison-row {
     grid-template-columns: 70px 1fr 36px;
@@ -1315,7 +1315,7 @@ p {
     min-height: 34px;
   }
   .lead-entry h2 {
-    font-size: 38px;
+    font-size: 32px;
   }
   .entry-meta {
     gap: 8px;
@@ -1328,7 +1328,7 @@ p {
     padding: 22px;
   }
   .visual-cover h1 {
-    font-size: 39px;
+    font-size: 32px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1470,7 +1470,7 @@ p {
 }
 .lead-entry h2 {
   grid-column: 2;
-  font-size: clamp(38px, 4.8vw, 54px);
+  font-size: clamp(32px, 3.8vw, 42px);
   margin-top: 0;
   letter-spacing: -1.9px;
 }
@@ -1543,7 +1543,7 @@ p {
     display: inline;
   }
   .lead-entry h2 {
-    font-size: 40px;
+    font-size: 32px;
   }
 }
 @media (max-width: 430px) {
@@ -1555,11 +1555,312 @@ p {
     gap: 22px;
   }
   .lead-entry h2 {
-    font-size: 37px;
+    font-size: 32px;
   }
 }
 @media print {
   :root {
     color-scheme: light !important;
+  }
+}
+
+/* More editorial context with a smaller, denser reading scale. */
+.home-positioning {
+  max-width: 920px;
+  padding: 34px 0 28px;
+  border-bottom: 0;
+}
+.home-positioning h1 {
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -1px;
+  margin: 16px 0 14px;
+}
+.home-positioning > p {
+  max-width: 680px;
+  font-size: 16px;
+  line-height: 1.75;
+}
+.intro-author {
+  display: inline-flex;
+  gap: 10px;
+  margin-top: 17px;
+  font-size: 12px;
+  color: var(--link);
+  text-decoration: none;
+  min-height: 28px;
+  align-items: center;
+}
+.intro-author:hover {
+  text-decoration: underline;
+}
+.question-index {
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 auto 12px;
+  padding: 23px 0 25px;
+  border-block: 1px solid var(--line);
+}
+.question-index > a {
+  position: relative;
+  padding: 0 23px;
+  text-decoration: none;
+  border-left: 1px solid var(--line);
+}
+.question-index > a:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+.question-index > a:last-child {
+  padding-right: 0;
+}
+.question-index .eyebrow {
+  color: var(--link);
+  font-size: 10px;
+}
+.question-title {
+  display: block;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+  max-width: 225px;
+  margin-top: 11px;
+}
+.question-context {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+  margin-top: 9px;
+}
+.question-arrow {
+  display: block;
+  font-size: 14px;
+  color: var(--link);
+  margin-top: 8px;
+}
+.question-index > a:hover .question-title {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.latest-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--link);
+}
+.lead-entry {
+  padding: 32px 0 40px;
+}
+.lead-entry h2 {
+  letter-spacing: -1.25px;
+}
+.lead-opening {
+  font-size: 18px;
+}
+.lead-opening p {
+  line-height: 1.75;
+  margin-bottom: 15px;
+}
+.starting-points {
+  max-width: 920px;
+  margin: 0 auto 42px;
+  padding: 26px 0 29px;
+  border-block: 1px solid var(--line);
+}
+.starting-points .section-heading h2 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.starting-points .section-heading p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 8px;
+}
+.starting-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 27px;
+}
+.starting-grid h3 {
+  font-size: 18px;
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  margin: 11px 0 10px;
+}
+.starting-grid h3 a {
+  text-decoration: none;
+}
+.starting-grid h3 a:hover {
+  text-decoration: underline;
+}
+.starting-grid h3 span {
+  font-size: 13px;
+  color: var(--link);
+}
+.starting-grid p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.starting-grid .sample-tag {
+  display: inline-block;
+  margin-top: 12px;
+}
+.journal-purpose {
+  max-width: 920px;
+  margin: 0 auto 44px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 60px;
+}
+.journal-purpose h2 {
+  font-size: 23px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin: 13px 0 14px;
+}
+.journal-purpose p {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.85;
+}
+.purpose-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 17px;
+  font-size: 12px;
+  color: var(--link);
+}
+.about-copy .about-subjects {
+  padding: 6px 0;
+}
+.about-subjects section {
+  margin-top: 23px;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent);
+}
+.about-subjects h3 {
+  margin: 0 0 9px;
+  font-size: 18px;
+}
+.about-subjects h3 a {
+  text-decoration: none;
+}
+.about-subjects .subject-question {
+  font-family: 'Geist', Arial, sans-serif;
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.about-subjects p:last-child {
+  font-size: 17px;
+}
+.about-preview {
+  background: var(--surface);
+  padding: 22px 25px;
+  margin: 30px 0;
+}
+.about-preview h2 {
+  font-size: 17px;
+  margin-top: 0;
+}
+.about-preview p {
+  font-family: 'Geist', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+.format-descriptions {
+  font-size: 17px;
+}
+.about-elsewhere {
+  font-family: 'Geist', Arial, sans-serif;
+  font-size: 13px;
+}
+@media (max-width: 700px) {
+  .home-positioning {
+    padding-top: 28px;
+  }
+  .home-positioning h1 {
+    font-size: 28px;
+  }
+  .question-index {
+    grid-template-columns: 1fr;
+    padding-block: 0;
+  }
+  .question-index > a,
+  .question-index > a:first-child,
+  .question-index > a:last-child {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 17px 0;
+    display: grid;
+    grid-template-columns: 82px 1fr 16px;
+    gap: 9px 12px;
+    align-items: baseline;
+  }
+  .question-index > a:first-child {
+    border-top: 0;
+  }
+  .question-index .eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .question-title {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    max-width: none;
+    font-size: 15px;
+  }
+  .question-context {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    font-size: 12px;
+  }
+  .question-arrow {
+    grid-column: 3;
+    grid-row: 1;
+    margin: 0;
+  }
+  .starting-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 22px;
+  }
+  .starting-grid article + article {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+  .starting-grid h3 {
+    font-size: 19px;
+  }
+  .starting-points .section-heading {
+    align-items: flex-start;
+  }
+  .starting-points .section-heading > a {
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  .journal-purpose {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .journal-purpose h2 {
+    font-size: 21px;
+  }
+  .purpose-links {
+    gap: 13px;
   }
 }

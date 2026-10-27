@@ -14,6 +14,9 @@ const writing = defineCollection({
       draft: z.boolean().default(false),
       sample: z.boolean().default(false),
       contents: z.boolean().optional(),
+      startHere: z
+        .object({ question: z.string(), reason: z.string() })
+        .optional(),
       cover: image().optional(),
       coverMobile: image().optional(),
       coverAlt: z.string().optional(),
